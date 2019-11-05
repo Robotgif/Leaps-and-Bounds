@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://code/Player.gd" type="Script" id=1]
+[ext_resource path="res://art/test/player.png" type="Texture" id=2]
+[ext_resource path="res://code/detect_platform.gd" type="Script" id=3]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3.87811, 1.68167 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 18
+collision_mask = 17
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -50 )
+scale = Vector2( 5.15715, 5.94646 )
+current = true
+
+[node name="sp_player" type="Sprite" parent="."]
+position = Vector2( 0, -60 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -50 )
+scale = Vector2( 5.15715, 5.94646 )
+shape = SubResource( 1 )
+
+[node name="detect_platform" type="Area2D" parent="."]
+position = Vector2( 0, -50 )
+scale = Vector2( 5.15715, 5.94646 )
+collision_layer = 0
+collision_mask = 16
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_platform"]
+position = Vector2( 0, 8.07203 )
+shape = SubResource( 2 )
+[connection signal="body_entered" from="detect_platform" to="detect_platform" method="_on_detect_platform_body_entered"]
