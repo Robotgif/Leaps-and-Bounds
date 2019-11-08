@@ -4,24 +4,25 @@
 [ext_resource path="res://art/test/player.png" type="Texture" id=2]
 [ext_resource path="res://templates/detect_platform.tscn" type="PackedScene" id=3]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
 [node name="Player" type="KinematicBody2D"]
+z_index = 100
 collision_layer = 18
 collision_mask = 17
 script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -50 )
-scale = Vector2( 5.15715, 5.94646 )
 current = true
 limit_left = 0
 limit_top = -99999999
 limit_right = 600
 limit_bottom = 600
-script = SubResource( 3 )
+drag_margin_left = 0.0
+drag_margin_right = 0.0
+script = SubResource( 1 )
 
 [node name="sp_player" type="Sprite" parent="."]
 position = Vector2( 0, -60 )
