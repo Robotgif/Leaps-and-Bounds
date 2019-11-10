@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://code/HUID.gd" type="Script" id=1]
+[ext_resource path="res://art/test/player.png" type="Texture" id=2]
+[ext_resource path="res://art/test/platforms.png" type="Texture" id=3]
+[ext_resource path="res://art/fonts/Pacifico-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 4 )
+
+[node name="HUID" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="live1" type="Sprite" parent="."]
+position = Vector2( 433.805, 29.7229 )
+scale = Vector2( 0.280002, 0.24 )
+texture = ExtResource( 2 )
+
+[node name="live2" type="Sprite" parent="."]
+position = Vector2( 459.322, 29.7229 )
+scale = Vector2( 0.280002, 0.24 )
+texture = ExtResource( 2 )
+
+[node name="live3" type="Sprite" parent="."]
+position = Vector2( 484.84, 29.342 )
+scale = Vector2( 0.280002, 0.24 )
+texture = ExtResource( 2 )
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = 501.598
+margin_top = 18.678
+margin_right = 633.598
+margin_bottom = 60.678
+rect_scale = Vector2( 0.6, 0.52 )
+texture_under = ExtResource( 3 )
+
+[node name="score" type="Label" parent="."]
+margin_left = 26.9457
+margin_top = -27.0502
+margin_right = 67.9457
+margin_bottom = 61.9498
+custom_fonts/font = SubResource( 1 )
+text = "0"

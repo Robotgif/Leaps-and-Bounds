@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://code/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/test/player.png" type="Texture" id=2]
@@ -6,7 +6,29 @@
 
 [sub_resource type="GDScript" id=1]
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.81717, 6.72669 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.831429 )
+colors = PoolColorArray( 0.225018, 0.632472, 0.902344, 1, 0.9375, 0.864295, 0.864295, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 50, 50, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 120, 0 )
+angular_velocity = 1.41531e-43
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 45.0
+angle_random = 1.0
+scale = 10.0
+scale_random = 1.0
+color_ramp = SubResource( 4 )
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 100
@@ -29,8 +51,16 @@ position = Vector2( 0, -60 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -50 )
+position = Vector2( 0, -60 )
 scale = Vector2( 5.15715, 5.94646 )
 shape = SubResource( 2 )
 
 [node name="detect_platform" parent="." instance=ExtResource( 3 )]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, -80 )
+emitting = false
+amount = 120
+lifetime = 2.0
+one_shot = true
+process_material = SubResource( 5 )

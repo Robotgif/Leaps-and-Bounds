@@ -37,7 +37,7 @@ func _process(delta):
 		max_pos = camera_pos.y - 500
 		make_platform()
 	elif len(pos_delete) > 0 and pos_delete[0] >= camera_pos.y + 500:
-		player.add_score()
+		player.take_score(player.score_level)
 		pos_delete.pop_front()
 		for p in platforms.pop_front():
 			p.free()
@@ -57,8 +57,17 @@ func make_platform():
 	platforms.append(set_platform)
 	pos_delete.append(max_pos)
 		
-		
-		
-		
-			
-	
+
+func _on_Player_update_health(health):
+	yield(get_tree().create_timer(.5), "timeout")
+	$transition.interpolate_property(self, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.35,
+	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$transition.start()
+	yield(get_tree().create_timer(.5), "timeout")
+	if get_tree().reload_current_scene() != OK:
+			print_debug("An error occured when trying to reload the current scene at Level.gd.")
+
+
+
+func _on_Player_update_score(score):
+	$HUID.set_score(score)

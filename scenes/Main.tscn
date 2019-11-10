@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://code/Main.gd" type="Script" id=1]
 [ext_resource path="res://templates/template_level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assests/bounds.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/HUID.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,3 +14,13 @@ position = Vector2( 29.9976, -25.6622 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 306.234, 632.739 )
+
+[node name="bounds" parent="." instance=ExtResource( 4 )]
+position = Vector2( 40.2388, 177.899 )
+scale = Vector2( 0.733368, 15.2554 )
+
+[node name="transition" type="Tween" parent="."]
+
+[node name="HUID" parent="." instance=ExtResource( 5 )]
+[connection signal="update_health" from="Player" to="." method="_on_Player_update_health"]
+[connection signal="update_score" from="Player" to="." method="_on_Player_update_score"]
