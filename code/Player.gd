@@ -41,6 +41,10 @@ func _get_input():
 	if is_on_floor():
 		_velocity.y = _jump_speed_moment
 		set_collision_mask_bit(4, false)
+		$sp_player.play("idle")
+	else:
+		pass #$sp_player.play("jump")
+		
 	if right:
 		_velocity.x += run_speed
 	if left:
@@ -56,6 +60,10 @@ func _physics_process(delta):
 			last_position_y = y + 200
 			take_score(score_jump)
 		_velocity.y += gravty * delta
+		if _velocity.y > 0:
+			$sp_player.play("idle")
+		else:
+			$sp_player.play("jump")
 		_velocity = move_and_slide(_velocity, Vector2(0, -1))
 
 func _set_positon_about_visivilty_status():

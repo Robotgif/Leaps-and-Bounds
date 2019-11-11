@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://code/Main.gd" type="Script" id=1]
-[ext_resource path="res://templates/template_level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assests/template_level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assests/bounds.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/HUID.tscn" type="PackedScene" id=5]
+[ext_resource path="res://art/meek_art/background_4.png" type="Texture" id=6]
+[ext_resource path="res://art/meek_art/background_3.png" type="Texture" id=7]
+[ext_resource path="res://art/meek_art/background_2.png" type="Texture" id=8]
+[ext_resource path="res://art/meek_art/background_1.png" type="Texture" id=9]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,11 +20,52 @@ position = Vector2( 29.9976, -25.6622 )
 position = Vector2( 306.234, 632.739 )
 
 [node name="bounds" parent="." instance=ExtResource( 4 )]
-position = Vector2( 40.2388, 177.899 )
+position = Vector2( 38.0677, 703.327 )
 scale = Vector2( 0.733368, 15.2554 )
 
 [node name="transition" type="Tween" parent="."]
 
 [node name="HUID" parent="." instance=ExtResource( 5 )]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -6
+scale = Vector2( 2, 4 )
+transform = Transform2D( 2, 0, 0, 4, 0, 0 )
+
+[node name="layer_4" type="ParallaxLayer" parent="ParallaxBackground"]
+editor/display_folded = true
+motion_scale = Vector2( 1, 0.001 )
+motion_offset = Vector2( 0, -440 )
+
+[node name="background_4" type="Sprite" parent="ParallaxBackground/layer_4"]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="layer_3" type="ParallaxLayer" parent="ParallaxBackground"]
+editor/display_folded = true
+motion_scale = Vector2( 1, 0.002 )
+motion_offset = Vector2( 0, -440 )
+
+[node name="background_2" type="Sprite" parent="ParallaxBackground/layer_3"]
+texture = ExtResource( 7 )
+centered = false
+
+[node name="layer_2" type="ParallaxLayer" parent="ParallaxBackground"]
+editor/display_folded = true
+motion_scale = Vector2( 1, 0.003 )
+motion_offset = Vector2( 0, -440 )
+
+[node name="background_2" type="Sprite" parent="ParallaxBackground/layer_2"]
+texture = ExtResource( 8 )
+centered = false
+
+[node name="layer_1" type="ParallaxLayer" parent="ParallaxBackground"]
+editor/display_folded = true
+motion_scale = Vector2( 1, 0.005 )
+motion_offset = Vector2( 0, -440 )
+
+[node name="background_2" type="Sprite" parent="ParallaxBackground/layer_1"]
+texture = ExtResource( 9 )
+centered = false
 [connection signal="update_health" from="Player" to="." method="_on_Player_update_health"]
 [connection signal="update_score" from="Player" to="." method="_on_Player_update_score"]

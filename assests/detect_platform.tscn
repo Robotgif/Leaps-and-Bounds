@@ -3,7 +3,7 @@
 [ext_resource path="res://code/detect_platform.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.87811, 1.68167 )
+extents = Vector2( 1.93906, 1.68167 )
 
 [node name="detect_platform" type="Area2D"]
 position = Vector2( 0, -50 )

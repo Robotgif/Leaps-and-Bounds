@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://code/HUID.gd" type="Script" id=1]
-[ext_resource path="res://art/test/player.png" type="Texture" id=2]
+[ext_resource path="res://art/meek_art/player_stand.png" type="Texture" id=2]
 [ext_resource path="res://art/test/platforms.png" type="Texture" id=3]
 [ext_resource path="res://art/fonts/Pacifico-Regular.ttf" type="DynamicFontData" id=4]
 
@@ -13,18 +13,18 @@ font_data = ExtResource( 4 )
 script = ExtResource( 1 )
 
 [node name="live1" type="Sprite" parent="."]
-position = Vector2( 433.805, 29.7229 )
-scale = Vector2( 0.280002, 0.24 )
+position = Vector2( 392.014, 27.8233 )
+scale = Vector2( 2.17958, 1.90214 )
 texture = ExtResource( 2 )
 
 [node name="live2" type="Sprite" parent="."]
-position = Vector2( 459.322, 29.7229 )
-scale = Vector2( 0.280002, 0.24 )
+position = Vector2( 436.654, 28.7731 )
+scale = Vector2( 2.17958, 1.90214 )
 texture = ExtResource( 2 )
 
 [node name="live3" type="Sprite" parent="."]
-position = Vector2( 484.84, 29.342 )
-scale = Vector2( 0.280002, 0.24 )
+position = Vector2( 480.345, 27.8233 )
+scale = Vector2( 2.17958, 1.90214 )
 texture = ExtResource( 2 )
 
 [node name="TextureProgress" type="TextureProgress" parent="."]

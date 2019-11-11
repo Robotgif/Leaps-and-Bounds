@@ -1,5 +1,5 @@
 extends Node2D
-onready var platform = preload("res://templates/Platform.tscn")
+onready var platform = preload("res://assests/platform.tscn")
 
 var bounds = {
 	'left': 0,
