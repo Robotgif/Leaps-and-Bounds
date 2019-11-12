@@ -4,37 +4,33 @@
 [ext_resource path="res://art/meek_art/tractorbeam.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16.3765, 509.098 )
+extents = Vector2( 14.6058, 46.4215 )
 
 [node name="bounds" type="Node2D"]
-position = Vector2( 36.9666, 195.705 )
+position = Vector2( 0, 195.705 )
 scale = Vector2( 0.736424, 9.40245 )
 script = ExtResource( 1 )
 
 [node name="bounds_right" type="Area2D" parent="."]
-editor/display_folded = true
-position = Vector2( -50.1974, -20.8143 )
-scale = Vector2( 1.35791, 0.106355 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bounds_right"]
-position = Vector2( 579.505, 208.752 )
-shape = SubResource( 1 )
-
-[node name="bounds_left" type="Area2D" parent="."]
-editor/display_folded = true
 collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="bounds_left"]
-position = Vector2( -28.3813, 1.10495 )
-scale = Vector2( 1.35791, 0.106355 )
+[node name="collision_right" type="CollisionShape2D" parent="bounds_right"]
+position = Vector2( -398.465, 1.34853 )
+shape = SubResource( 1 )
+
+[node name="bounds_left" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="collision_left" type="CollisionShape2D" parent="bounds_left"]
+position = Vector2( 389.856, 2.40808 )
 shape = SubResource( 1 )
 
 [node name="tractorbeam" type="Sprite" parent="."]
-position = Vector2( 353.192, 1.47936 )
-scale = Vector2( 2.8394, 1 )
+position = Vector2( -1.22986, -0.288967 )
+scale = Vector2( 3, 1 )
 z_index = -2
 texture = ExtResource( 2 )
-vframes = 2
 [connection signal="body_entered" from="bounds_right" to="." method="_on_bounds_right_body_entered"]
 [connection signal="body_entered" from="bounds_left" to="." method="_on_bounds_left_body_entered"]

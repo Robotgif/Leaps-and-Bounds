@@ -12,18 +12,21 @@ font_data = ExtResource( 4 )
 [node name="HUID" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="live1" type="Sprite" parent="."]
-position = Vector2( 392.014, 27.8233 )
+[node name="lives" type="Node2D" parent="."]
+position = Vector2( 26.9457, -27.0502 )
+
+[node name="live3" type="Sprite" parent="lives"]
+position = Vector2( 453.399, 54.8735 )
 scale = Vector2( 2.17958, 1.90214 )
 texture = ExtResource( 2 )
 
-[node name="live2" type="Sprite" parent="."]
-position = Vector2( 436.654, 28.7731 )
+[node name="live2" type="Sprite" parent="lives"]
+position = Vector2( 409.708, 55.8233 )
 scale = Vector2( 2.17958, 1.90214 )
 texture = ExtResource( 2 )
 
-[node name="live3" type="Sprite" parent="."]
-position = Vector2( 480.345, 27.8233 )
+[node name="live1" type="Sprite" parent="lives"]
+position = Vector2( 365.068, 54.8735 )
 scale = Vector2( 2.17958, 1.90214 )
 texture = ExtResource( 2 )
 
