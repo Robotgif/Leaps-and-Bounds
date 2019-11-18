@@ -1,12 +1,16 @@
 extends Node2D
 
+export var auto_generate: bool = true
+
+
 var player = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_parent().get_node("Player")
 
 func _physics_process(delta):
-	position.y = player.position.y - 200
+	if auto_generate:
+		position.y = player.position.y - 200
 
 
 
