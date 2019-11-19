@@ -56,13 +56,13 @@ current = true
 limit_left = 0
 limit_top = -99999999
 limit_right = 800
-limit_bottom = 600
+limit_bottom = 2250
 drag_margin_left = 0.0
 drag_margin_right = 0.0
 script = SubResource( 1 )
 
 [node name="sp_player" type="AnimatedSprite" parent="."]
-position = Vector2( 4, -82 )
+position = Vector2( 2.92453, -82.717 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
 animation = "jump"
@@ -83,3 +83,14 @@ lifetime = 2.0
 one_shot = true
 process_material = SubResource( 6 )
 texture = ExtResource( 5 )
+
+[node name="positions_shots" type="Node2D" parent="."]
+
+[node name="left_pos" type="Position2D" parent="positions_shots"]
+position = Vector2( -20.7922, -78.5084 )
+
+[node name="right_pos" type="Position2D" parent="positions_shots"]
+position = Vector2( 20.7922, -79.2253 )
+
+[node name="up_pos" type="Position2D" parent="positions_shots"]
+position = Vector2( 0, -100.376 )

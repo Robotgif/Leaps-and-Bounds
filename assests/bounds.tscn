@@ -1,10 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://bounds.gd" type="Script" id=1]
+[ext_resource path="res://code/bounds.gd" type="Script" id=1]
 [ext_resource path="res://art/meek_art/tractorbeam.png" type="Texture" id=2]
 
+
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.6058, 46.4215 )
+extents = Vector2( 14.6058, 130.281 )
 
 [node name="bounds" type="Node2D"]
 position = Vector2( 0, 195.705 )

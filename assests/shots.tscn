@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://code/shots.gd" type="Script" id=1]
+[ext_resource path="res://art/test/shots.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.27714
+
+[node name="shots" type="KinematicBody2D"]
+position = Vector2( 405.975, 255.62 )
+collision_layer = 32
+collision_mask = 8
+script = ExtResource( 1 )
+
+[node name="img" type="Sprite" parent="."]
+position = Vector2( -0.0330219, 0.32689 )
+scale = Vector2( 0.993396, 1.07264 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.269234 )
+shape = SubResource( 1 )

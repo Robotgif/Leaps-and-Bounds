@@ -16,26 +16,26 @@ script = ExtResource( 1 )
 position = Vector2( 26.9457, -27.0502 )
 
 [node name="live3" type="Sprite" parent="lives"]
-position = Vector2( 453.399, 54.8735 )
+position = Vector2( 558.661, 59.7961 )
 scale = Vector2( 2.17958, 1.90214 )
 texture = ExtResource( 2 )
 
 [node name="live2" type="Sprite" parent="lives"]
-position = Vector2( 409.708, 55.8233 )
+position = Vector2( 515.872, 58.9409 )
 scale = Vector2( 2.17958, 1.90214 )
 texture = ExtResource( 2 )
 
 [node name="live1" type="Sprite" parent="lives"]
-position = Vector2( 365.068, 54.8735 )
+position = Vector2( 470.33, 59.7961 )
 scale = Vector2( 2.17958, 1.90214 )
 texture = ExtResource( 2 )
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
-margin_left = 501.598
-margin_top = 18.678
-margin_right = 633.598
-margin_bottom = 60.678
-rect_scale = Vector2( 0.6, 0.52 )
+margin_left = 606.628
+margin_top = 23.805
+margin_right = 738.628
+margin_bottom = 65.805
+rect_scale = Vector2( 1.42, 0.57 )
 texture_under = ExtResource( 3 )
 
 [node name="score" type="Label" parent="."]

@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://code/platform.gd" type="Script" id=1]
+[ext_resource path="res://art/test/breaklable_particle.png" type="Texture" id=2]
+[ext_resource path="res://art/meek_art/solid_large.png" type="Texture" id=3]
+[ext_resource path="res://art/meek_art/solid_small.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 75.744, 10 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+trail_divisor = 2
+emission_shape = 2
+emission_box_extents = Vector3( 60, 10, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+angular_velocity = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 81.4921, 4.57138 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 83.2807, 10 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 42.5825, 15.0492 )
+
+[node name="platform" type="Node2D"]
+position = Vector2( 0, -1.06942 )
+script = ExtResource( 1 )
+
+[node name="breakable" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="collider" type="CollisionShape2D" parent="breakable"]
+position = Vector2( -7.36841, -7.6799 )
+shape = SubResource( 3 )
+disabled = true
+one_way_collision = true
+
+[node name="particles" type="Particles2D" parent="breakable"]
+position = Vector2( 0, 0.397217 )
+emitting = false
+amount = 7
+lifetime = 2.0
+process_material = SubResource( 2 )
+texture = ExtResource( 2 )
+
+[node name="img" type="Sprite" parent="breakable"]
+scale = Vector2( 2.5, 2.23684 )
+texture = ExtResource( 3 )
+
+[node name="timer" type="Timer" parent="breakable"]
+one_shot = true
+
+[node name="dectect_collision" type="Area2D" parent="breakable"]
+position = Vector2( -7.54707, -20.6551 )
+monitoring = false
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="breakable/dectect_collision"]
+shape = SubResource( 5 )
+one_way_collision = true
+
+[node name="long" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="collider" type="CollisionShape2D" parent="long"]
+position = Vector2( -5.86108, -4.66525 )
+shape = SubResource( 4 )
+disabled = true
+one_way_collision = true
+
+[node name="img" type="Sprite" parent="long"]
+scale = Vector2( 2.5, 2.23684 )
+texture = ExtResource( 3 )
+
+[node name="short" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="collider" type="CollisionShape2D" parent="short"]
+position = Vector2( -2.84638, -3.1579 )
+shape = SubResource( 1 )
+disabled = true
+one_way_collision = true
+
+[node name="img" type="Sprite" parent="short"]
+scale = Vector2( 2.5, 2.23684 )
+texture = ExtResource( 4 )
+[connection signal="timeout" from="breakable/timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="breakable/dectect_collision" to="." method="_on_Area2D_body_entered"]

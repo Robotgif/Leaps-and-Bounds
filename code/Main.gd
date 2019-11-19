@@ -1,5 +1,5 @@
 extends Node2D
-onready var platform = preload("res://assests/platform.tscn")
+onready var platform = preload("res://assests/platforms.tscn")
 
 
 var camera: Camera2D = null
