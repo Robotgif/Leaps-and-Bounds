@@ -7,10 +7,13 @@
 radius = 5.27714
 
 [node name="shots" type="KinematicBody2D"]
-position = Vector2( 405.975, 255.62 )
+position = Vector2( 223.328, 56.697 )
 collision_layer = 32
 collision_mask = 8
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="img" type="Sprite" parent="."]
 position = Vector2( -0.0330219, 0.32689 )
@@ -18,5 +21,5 @@ scale = Vector2( 0.993396, 1.07264 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.269234 )
+position = Vector2( -0.160156, -0.154457 )
 shape = SubResource( 1 )

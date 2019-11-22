@@ -25,7 +25,11 @@ position = Vector2( 371.365, 1212.26 )
 auto_generate = false
 
 [node name="bounds2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 371.37, -1194.41 )
+position = Vector2( 371.37, -1194.66 )
+auto_generate = false
+
+[node name="bounds3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 371.624, -3601.79 )
 auto_generate = false
 
 [node name="platforms" type="Node2D" parent="."]
@@ -76,13 +80,17 @@ position = Vector2( 559.122, -1102.39 )
 [node name="platform13" parent="platforms" instance=ExtResource( 6 )]
 position = Vector2( 481.85, -1362.03 )
 
-[node name="platform16" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 290.062, -1244.57 )
-type = 0
-
 [node name="platform14" parent="platforms" instance=ExtResource( 6 )]
 position = Vector2( 663.263, -1619.72 )
 type = 1
+
+[node name="platform15" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 171.194, -1680.74 )
+type = 1
+
+[node name="platform16" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 290.062, -1244.57 )
+type = 0
 
 [node name="platform17" parent="platforms" instance=ExtResource( 6 )]
 position = Vector2( 663.263, -1762.04 )
@@ -103,18 +111,63 @@ position = Vector2( 579.928, -2813.07 )
 [node name="platform22" parent="platforms" instance=ExtResource( 6 )]
 position = Vector2( 234.823, -2817.37 )
 
-[node name="platform15" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 171.194, -1680.74 )
+[node name="platform23" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 381.232, -3097.17 )
+
+[node name="platform24" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 312.321, -3569.85 )
+type = 0
+
+[node name="platform25" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 353.229, -3712.06 )
+
+[node name="platform26" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 588.939, -3729.59 )
+
+[node name="platform27" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 627.9, -3957.51 )
+
+[node name="platform28" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 212.972, -4130.88 )
 type = 1
 
+[node name="platform29" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 480.178, -4571.33 )
+type = 1
+
+[node name="platform30" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 477.241, -4900.2 )
+type = 1
+
+[node name="platform31" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 682.784, -5143.91 )
+type = 1
+
+[node name="platform32" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 691.593, -5384.69 )
+type = 1
+
+[node name="platform33" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 163.055, -5601.98 )
+type = 1
+
+[node name="platform34" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 163.055, -5601.98 )
+type = 1
+
+[node name="platform35" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 430.26, -5869.19 )
+type = 0
+
 [node name="next_level" type="Area2D" parent="."]
-editor/display_folded = true
 position = Vector2( 360.534, -853.363 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="next_level"]
+position = Vector2( 15.2428, -3424.29 )
 shape = SubResource( 1 )
 
 [node name="fallen" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 360.534, -853.363 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fallen"]

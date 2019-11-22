@@ -4,7 +4,7 @@ signal update_health
 signal update_score
 
 
-export (int) var run_speed = 300
+export (int) var run_speed = 400
 export (int) var gravty = 1500
 export (int) var jump_speed = -1000
 export (int) var jump_speed_super = -1300
@@ -13,6 +13,8 @@ export (int) var score_jump = 10
 export (int) var lives = 10
 export (int) var health = 100
 export (float) var fire_rate = .2
+
+enum DIR_SHOSTS  {LEFT, RIGHT, UP}
 
 var bullet = preload("res://assests/shots.tscn")
 var _score = 0
@@ -23,6 +25,15 @@ var size_viewport = null
 var last_position_y = 0
 var _pos_spawn = Vector2.ZERO
 var can_fire = true
+var dir_shots = DIR_SHOSTS.RIGHT
+var _r_bullet_pos = null
+var _up_bullet_pos = null
+var _l_bullet_pos = null
+var bullet_pos = null
+var pongo_stick = false
+var release_action_active = false
+var _touch_floor = true
+
 
 func set_spawn(pos):
 	_pos_spawn = Vector2(size_viewport.x / 2, pos)
@@ -36,9 +47,6 @@ func take_score(score):
 	_score += score
 	emit_signal("update_score", _score)
 	
-	
-
-
 func spawn():
 	$Particles2D.visible = false
 	position = _pos_spawn
@@ -49,48 +57,75 @@ func spawn():
 func _ready():
 	size_viewport = get_viewport_rect().size
 	_pos_spawn = Vector2(size_viewport.x /2, size_viewport.y/2)
-
+	_r_bullet_pos = get_node("sp_player/positions_shots/r_pos")
+	_l_bullet_pos = get_node("sp_player/positions_shots/l_pos")
+	_up_bullet_pos = get_node("sp_player/positions_shots/up_pos")
+	bullet_pos = _r_bullet_pos
+	
 func _get_input():
 	_set_positon_about_visivilty_status()
 	_velocity.x = 0
 	var left = Input.is_action_pressed("left")
 	var right = Input.is_action_pressed("right")
-	var up = Input.is_action_pressed("up") 
+	var up = Input.is_action_pressed("up")
 	var shots = Input.is_action_pressed("shots")
 	var jump = Input.is_action_pressed("jump")
-	var super_jump = Input.is_action_pressed("down")
+	#var super_jump = Input.is_action_pressed("down")
 	
-	_jump_speed_moment = jump_speed if not super_jump else jump_speed_super
+	#_jump_speed_moment = jump_speed if not super_jump else jump_speed_super
+	if is_on_floor():
+		_touch_floor = true
+		$timer_on_air.stop()
 	
-	if is_on_floor() and jump:
+	if not is_on_floor() and $timer_on_air.is_stopped():
+		$timer_on_air.start()
+		_touch_floor = false
+		
+		
+	if is_on_floor() and not jump: #exit pongo stick
+		release_action_active = false
+		pongo_stick = false
+		_jump_speed_moment = jump_speed
+	elif not is_on_floor() and jump and release_action_active:
+		_jump_speed_moment = jump_speed_super
+		pongo_stick = true
+	elif is_on_floor() and jump:
 		_velocity.y = _jump_speed_moment
 		set_collision_mask_bit(4, false)
-		$sp_player.play("idle")
-	else:
-		pass
+		if not pongo_stick:
+			$sp_player.play("idle")
+		else:
+			pass #anitmation pongo stick
+	elif not is_on_floor() and not jump:
+		release_action_active = true	
+
+	if right:
+		$sp_player.flip_h = false
+		dir_shots = DIR_SHOSTS.RIGHT
+		bullet_pos = _r_bullet_pos
+		if not shots:
+			_velocity.x += run_speed
+	elif left:
+		$sp_player.flip_h = true
+		dir_shots = DIR_SHOSTS.LEFT
+		bullet_pos = _l_bullet_pos
+		if not shots:
+			_velocity.x -= run_speed
+	elif up:
+		$sp_player.flip_h = true
+		dir_shots = DIR_SHOSTS.UP
+		bullet_pos = _up_bullet_pos
+	
+
 		
-	if right and not shots:
-		_velocity.x += run_speed
-	elif left and not shots:
-		_velocity.x -= run_speed
-		
-	elif shots and can_fire:
+	if shots and can_fire:
 		var _bullet = bullet.instance()
-		if left:
-			_bullet.position = position + $positions_shots/left_pos.position
-			_bullet.set_direction(0)
-		elif right:
-			_bullet.position = position + $positions_shots/right_pos.position
-			_bullet.set_direction(1) 
-		elif up:
-			_bullet.position = position + $positions_shots/up_pos.position
-			_bullet.set_direction(2)
-		if left or right or up:
-			
-			get_tree().get_root().add_child(_bullet)
-			can_fire = false
-			yield(get_tree().create_timer(fire_rate), "timeout")
-			can_fire = true
+		_bullet.global_position = bullet_pos.global_position
+		_bullet.set_direction(dir_shots)
+		get_tree().get_root().add_child(_bullet)
+		can_fire = false
+		yield(get_tree().create_timer(fire_rate), "timeout")
+		can_fire = true
 	
 func _process(delta):
 	if $Camera2D.limit_bottom + 1500 < position.y:
@@ -138,9 +173,7 @@ func die():
 		$Particles2D.show()
 		emit_signal("update_health", _health_moment)
 
-
-	
-	
-	
-
+func _on_timer_on_air_timeout():
+	if not _touch_floor:
+		die()
 	

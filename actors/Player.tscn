@@ -50,6 +50,7 @@ z_index = 100
 collision_layer = 18
 collision_mask = 17
 script = ExtResource( 1 )
+fire_rate = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -66,6 +67,19 @@ position = Vector2( 2.92453, -82.717 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
 animation = "jump"
+
+[node name="positions_shots" type="Node2D" parent="sp_player"]
+position = Vector2( -1.46227, 41.3585 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="r_pos" type="Position2D" parent="sp_player/positions_shots"]
+position = Vector2( 23.1761, -76.8414 )
+
+[node name="l_pos" type="Position2D" parent="sp_player/positions_shots"]
+position = Vector2( -24.1619, -76.5008 )
+
+[node name="up_pos" type="Position2D" parent="sp_player/positions_shots"]
+position = Vector2( -0.340561, -102.76 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -80 )
@@ -84,13 +98,7 @@ one_shot = true
 process_material = SubResource( 6 )
 texture = ExtResource( 5 )
 
-[node name="positions_shots" type="Node2D" parent="."]
-
-[node name="left_pos" type="Position2D" parent="positions_shots"]
-position = Vector2( -20.7922, -78.5084 )
-
-[node name="right_pos" type="Position2D" parent="positions_shots"]
-position = Vector2( 20.7922, -79.2253 )
-
-[node name="up_pos" type="Position2D" parent="positions_shots"]
-position = Vector2( 0, -100.376 )
+[node name="timer_on_air" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+[connection signal="timeout" from="timer_on_air" to="." method="_on_timer_on_air_timeout"]
