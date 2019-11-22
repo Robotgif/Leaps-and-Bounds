@@ -4,7 +4,7 @@ signal update_health
 signal update_score
 
 
-export (int) var run_speed = 500
+export (int) var run_speed = 300
 export (int) var gravty = 1500
 export (int) var jump_speed = -1000
 export (int) var jump_speed_super = -1300
@@ -69,12 +69,12 @@ func _get_input():
 	else:
 		pass
 		
-	if right:
+	if right and not shots:
 		_velocity.x += run_speed
-	elif left:
+	elif left and not shots:
 		_velocity.x -= run_speed
 		
-	if shots and can_fire:
+	elif shots and can_fire:
 		var _bullet = bullet.instance()
 		if left:
 			_bullet.position = position + $positions_shots/left_pos.position
