@@ -36,6 +36,8 @@ margin_top = 23.805
 margin_right = 738.628
 margin_bottom = 65.805
 rect_scale = Vector2( 1.42, 0.57 )
+max_value = 50.0
+rounded = true
 texture_under = ExtResource( 3 )
 
 [node name="score" type="Label" parent="."]

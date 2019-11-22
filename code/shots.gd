@@ -1,3 +1,4 @@
+#warning-ignore-all:unused_variable
 extends KinematicBody2D
 
 export var speed: int = 800
@@ -18,7 +19,7 @@ func _physics_process(delta):
 	    _velocity = _velocity.slide(collision.normal)
 
 	# using move_and_slide
-	#_velocity = move_and_slide(_velocity)
+	_velocity = move_and_slide(_velocity)
 	
 func set_direction(dir):
 	if dir == shot_dir.LEFT:

@@ -1,12 +1,12 @@
+#warning-ignore-all:unused_variable
 extends Node2D
 
 export var auto_generate: bool = true
 
-
 var player = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player = get_parent().get_node("Player")
+	player = global.player
 
 func _physics_process(delta):
 	if auto_generate:

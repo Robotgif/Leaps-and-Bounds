@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://code/next_level.gd" type="Script" id=1]
+[ext_resource path="res://assests/platforms.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/test/port.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21.3336, 32.8154 )
+
+[node name="next_level" type="Area2D"]
+position = Vector2( 415.838, 280 )
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="platform37" parent="." instance=ExtResource( 2 )]
+position = Vector2( 34.5141, 58.1694 )
+
+[node name="platform38" parent="." instance=ExtResource( 2 )]
+position = Vector2( 194.508, 58.1694 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 4.50815, 0.822296 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 4.5083, -0.547607 )
+scale = Vector2( 0.165419, 0.165419 )
+texture = ExtResource( 3 )
+[connection signal="body_entered" from="." to="." method="_on_next_level_body_entered"]

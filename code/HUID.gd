@@ -1,3 +1,4 @@
+#warning-ignore-all:unused_variable
 extends CanvasLayer
 
 func set_score(score):
@@ -9,3 +10,6 @@ func set_lives(lives):
 		if i > 0:
 			l.visible = false
 			i -= 1
+					
+func set_health(health):
+	pass

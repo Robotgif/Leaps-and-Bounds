@@ -1,3 +1,4 @@
+#warning-ignore-all:unused_variable
 extends Node2D
 onready var platform = preload("res://assests/platforms.tscn")
 

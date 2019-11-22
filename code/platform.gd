@@ -1,3 +1,4 @@
+#warning-ignore-all:unused_variable
 extends Node2D
 
 enum TYPES_PLATFORMS {BREAKABLE, SHORT, LONG}
@@ -25,11 +26,13 @@ func _ready():
 		$long.visible = true
 		$long/collider.disabled = false
 
-func _on_timer_timeout():
-	pass
-
 
 func _on_Area2D_body_entered(body):
 	$breakable/particles.emitting = true
-	yield(get_tree().create_timer(2), "timeout")
-	free()
+	$breakable/timer_gone.start()
+	
+
+
+func _on_timer_gone_timeout():
+	queue_free()
+	

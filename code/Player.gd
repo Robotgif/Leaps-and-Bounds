@@ -10,13 +10,15 @@ export (int) var jump_speed = -1000
 export (int) var jump_speed_super = -1300
 export (int) var score_level = 1000
 export (int) var score_jump = 10
-export (int) var lives = 10
+export (int) var lives = 3
 export (int) var health = 100
 export (float) var fire_rate = .2
 
 enum DIR_SHOSTS  {LEFT, RIGHT, UP}
 
-var bullet = preload("res://assests/shots.tscn")
+onready var bullet = preload("res://assests/shots.tscn")
+onready var timer_on_air = $timer_on_air
+
 var _score = 0
 var _jump_speed_moment = jump_speed
 var _health_moment = health
@@ -34,9 +36,29 @@ var pongo_stick = false
 var release_action_active = false
 var _touch_floor = true
 
+func get_score_level():
+	return score_level
+	
+func get_score():
+	return _score
+	
+func get_lives():
+	return lives
+	
+func get_health():
+	return _health_moment
+	
+func set_score(score):
+	_score = score
 
-func set_spawn(pos):
-	_pos_spawn = Vector2(size_viewport.x / 2, pos)
+func set_health(health):
+	_health_moment = health
+
+func set_lives(lv):
+	lives = lv
+
+func set_spawn(pos: Vector2):
+	_pos_spawn = pos
 	
 func take_damage(damage):
 	_health_moment -= damage
@@ -70,17 +92,14 @@ func _get_input():
 	var up = Input.is_action_pressed("up")
 	var shots = Input.is_action_pressed("shots")
 	var jump = Input.is_action_pressed("jump")
-	#var super_jump = Input.is_action_pressed("down")
 	
-	#_jump_speed_moment = jump_speed if not super_jump else jump_speed_super
 	if is_on_floor():
 		_touch_floor = true
-		$timer_on_air.stop()
+		timer_on_air.stop()
 	
 	if not is_on_floor() and $timer_on_air.is_stopped():
-		$timer_on_air.start()
+		timer_on_air.start()
 		_touch_floor = false
-		
 		
 	if is_on_floor() and not jump: #exit pongo stick
 		release_action_active = false
@@ -162,7 +181,9 @@ func desintegrated():
 		$sp_player.visible = false
 		$Particles2D.emitting = true
 		$Particles2D.show()
+		timer_on_air.stop()
 		emit_signal("update_health", _health_moment)
+		
 
 func die():
 	if _health_moment > 0:
@@ -171,6 +192,7 @@ func die():
 		$sp_player.visible = false
 		$Particles2D.emitting = true
 		$Particles2D.show()
+		timer_on_air.stop()
 		emit_signal("update_health", _health_moment)
 
 func _on_timer_on_air_timeout():

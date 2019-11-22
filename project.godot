@@ -19,6 +19,16 @@ config/name="Leapd_and_bounds"
 run/main_scene="res://scenes/level01.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://code/global.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_class_variable=false
+gdscript/warnings/unused_argument=false
+
 [display]
 
 window/size/width=800
@@ -63,6 +73,7 @@ shots={
 2d_physics/layer_3="enemy"
 2d_physics/layer_4="bounds"
 2d_physics/layer_5="platform"
+2d_physics/layer_6="bullets"
 
 [rendering]
 
