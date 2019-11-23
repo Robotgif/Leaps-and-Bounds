@@ -19,7 +19,7 @@ script = ExtResource( 1 )
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 346.036, 2202.7 )
+position = Vector2( 360.036, 2097.7 )
 
 [node name="bounds" parent="." instance=ExtResource( 5 )]
 position = Vector2( 371.365, 1212.26 )

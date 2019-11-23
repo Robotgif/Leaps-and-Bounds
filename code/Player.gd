@@ -13,11 +13,14 @@ export (int) var score_jump = 10
 export (int) var lives = 3
 export (int) var health = 100
 export (float) var fire_rate = .2
+export (float) var jump_delay = .3
 
 enum DIR_SHOSTS  {LEFT, RIGHT, UP}
 
 onready var bullet = preload("res://assests/shots.tscn")
 onready var timer_on_air = $timer_on_air
+onready var sp_player = $sp_player
+onready var root_node = get_tree().get_root()
 
 var _score = 0
 var _jump_speed_moment = jump_speed
@@ -35,6 +38,7 @@ var bullet_pos = null
 var pongo_stick = false
 var release_action_active = false
 var _touch_floor = true
+var can_show_jump = false
 
 func get_score_level():
 	return score_level
@@ -85,22 +89,25 @@ func _ready():
 	bullet_pos = _r_bullet_pos
 	
 func _get_input():
-	_set_positon_about_visivilty_status()
 	_velocity.x = 0
 	var left = Input.is_action_pressed("left")
 	var right = Input.is_action_pressed("right")
 	var up = Input.is_action_pressed("up")
 	var shots = Input.is_action_pressed("shots")
 	var jump = Input.is_action_pressed("jump")
+	var jump_release = Input.is_action_just_released("jump")
 	
+	if jump_release and pongo_stick:
+		pongo_stick = false
+		
 	if is_on_floor():
 		_touch_floor = true
 		timer_on_air.stop()
-	
+		
 	if not is_on_floor() and $timer_on_air.is_stopped():
 		timer_on_air.start()
 		_touch_floor = false
-		
+			
 	if is_on_floor() and not jump: #exit pongo stick
 		release_action_active = false
 		pongo_stick = false
@@ -111,48 +118,88 @@ func _get_input():
 	elif is_on_floor() and jump:
 		_velocity.y = _jump_speed_moment
 		set_collision_mask_bit(4, false)
-		if not pongo_stick:
-			$sp_player.play("idle")
-		else:
-			pass #anitmation pongo stick
 	elif not is_on_floor() and not jump:
 		release_action_active = true	
 
 	if right:
-		$sp_player.flip_h = false
+		sp_player.flip_h = false
 		dir_shots = DIR_SHOSTS.RIGHT
 		bullet_pos = _r_bullet_pos
-		if not shots:
+		if not shots or not is_on_floor():
 			_velocity.x += run_speed
 	elif left:
-		$sp_player.flip_h = true
+		sp_player.flip_h = true
 		dir_shots = DIR_SHOSTS.LEFT
 		bullet_pos = _l_bullet_pos
-		if not shots:
+		if not shots or not is_on_floor():
 			_velocity.x -= run_speed
 	elif up:
-		$sp_player.flip_h = true
+		sp_player.flip_h = true
 		dir_shots = DIR_SHOSTS.UP
 		bullet_pos = _up_bullet_pos
-	
 
 		
 	if shots and can_fire:
 		var _bullet = bullet.instance()
 		_bullet.global_position = bullet_pos.global_position
 		_bullet.set_direction(dir_shots)
-		get_tree().get_root().add_child(_bullet)
+		root_node.add_child(_bullet)
 		can_fire = false
 		yield(get_tree().create_timer(fire_rate), "timeout")
 		can_fire = true
 	
-func _process(delta):
-	if $Camera2D.limit_bottom + 1500 < position.y:
-		die()
-	elif _pos_spawn.y < 0 and _pos_spawn.y + 500 <  position.y:
-		die()
+	_animations(left, right, up, shots, can_fire,  jump, pongo_stick)
+
+
+func _animations(left, right, up, shots, can_fire,  jump, pongo_stick):
 	
+	if is_on_floor():
+		if not (left or right or up or shots or jump):  #show animation idle
+			sp_player.play("idle")
+		elif (left or right) and not shots:  #show animation idle, no it is very necesary
+			sp_player.play("run")            #because it does not look
 		
+		else:
+			if not shots:
+				if not pongo_stick:
+					_set_status_animation("idle", 0)
+				else:
+					_set_status_animation("pongo_stick", 2)
+			elif shots:
+				if not pongo_stick:
+					if dir_shots == DIR_SHOSTS.UP:
+						_set_status_animation("gun",1)
+					else:
+						_set_status_animation("gun",0)
+				else:
+					if dir_shots == DIR_SHOSTS.UP:
+						_set_status_animation("pongo_stick",1)
+					else:
+						_set_status_animation("pongo_stick",0)
+			can_show_jump = false
+			yield(get_tree().create_timer(jump_delay), "timeout") #a liter delay for the animation realism
+			can_show_jump = true
+	elif not is_on_floor() and can_show_jump:
+		if not shots:
+			sp_player.playing = false
+			if not pongo_stick:
+				_set_status_animation("jump", 0)
+			else:
+				_set_status_animation("pongo_stick", 5)
+	
+		elif shots:
+			if not pongo_stick:
+				if dir_shots == DIR_SHOSTS.UP:
+					_set_status_animation("jump",2)
+				else:
+					_set_status_animation("jump",1)
+			else:
+				if dir_shots == DIR_SHOSTS.UP:
+					_set_status_animation("pongo_stick",4)
+				else:
+					_set_status_animation("pongo_stick",3)
+	
+
 func _physics_process(delta):
 	_get_input()
 	if _health_moment > 0:
@@ -161,17 +208,8 @@ func _physics_process(delta):
 			last_position_y = y + 200
 			take_score(score_jump)
 		_velocity.y += gravty * delta
-		if _velocity.y > 0:
-			$sp_player.play("idle")
-		else:
-			$sp_player.play("jump")
 		_velocity = move_and_slide(_velocity, Vector2(0, -1))
 
-func _set_positon_about_visivilty_status():
-	if position.x < 0:
-		position.x = size_viewport.x + position.x
-	elif position.x > size_viewport.x:
-		position.x =  position.x - size_viewport.x
 
 
 func desintegrated():
@@ -199,3 +237,7 @@ func _on_timer_on_air_timeout():
 	if not _touch_floor:
 		die()
 	
+func _set_status_animation(animation, frame):
+	sp_player.playing = false
+	sp_player.animation = animation
+	sp_player.frame = frame
