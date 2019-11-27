@@ -1,9 +1,12 @@
 #warning-ignore-all:unused_variable
 extends Node2D
 
-enum TYPES_PLATFORMS {BREAKABLE, SHORT, LONG}
+var collider = null
+
+enum TYPES_PLATFORMS {BREAKABLE, SHORT, LONG, MOVING}
 
 export (TYPES_PLATFORMS) var type  = TYPES_PLATFORMS.LONG
+
 
 func disable_all():
 	$breakable.visible = false
@@ -18,21 +21,31 @@ func _ready():
 	if type == TYPES_PLATFORMS.BREAKABLE:
 		$breakable.visible = true
 		$breakable/collider.disabled = false
-		$breakable/dectect_collision.monitoring = true
+		collider = $breakable
 	elif type == TYPES_PLATFORMS.SHORT:
 		$short.visible = true
 		$short/collider.disabled = false
+		collider = $short
 	elif type == TYPES_PLATFORMS.LONG:
 		$long.visible = true
 		$long/collider.disabled = false
-
+		collider = $long
+	elif type == TYPES_PLATFORMS.MOVING:
+		$AnimationPlayer.play("left_right")
+		$breakable.visible = true
+		$breakable/collider.disabled = false
+		collider = $breakable
 
 func _on_Area2D_body_entered(body):
-	$breakable/particles.emitting = true
-	$breakable/timer_gone.start()
-	
-
-
+	if body.name == "Player":
+		collider.set_collision_mask_bit(1, true)
+		if type == TYPES_PLATFORMS.BREAKABLE and body.is_on_floor():
+			$breakable/timer_gone.start()
+		
 func _on_timer_gone_timeout():
-	queue_free()
+	$breakable/collider.disabled = true
+	$breakable/particles.emitting = true
+	$breakable/img.visible = false
+			
+	
 	

@@ -96,6 +96,7 @@ func _get_input():
 	var shots = Input.is_action_pressed("shots")
 	var jump = Input.is_action_pressed("jump")
 	var jump_release = Input.is_action_just_released("jump")
+	var down = Input.is_action_pressed("down")
 	
 	if jump_release and pongo_stick:
 		pongo_stick = false
@@ -107,11 +108,15 @@ func _get_input():
 	if not is_on_floor() and $timer_on_air.is_stopped():
 		timer_on_air.start()
 		_touch_floor = false
+		
+	
 			
-	if is_on_floor() and not jump: #exit pongo stick
+	if is_on_floor() and not jump and not down: #exit pongo stick
 		release_action_active = false
 		pongo_stick = false
 		_jump_speed_moment = jump_speed
+	elif is_on_floor() and down:
+		get_slide_collision(0).collider.set_collision_mask_bit(1, false)
 	elif not is_on_floor() and jump and release_action_active:
 		_jump_speed_moment = jump_speed_super
 		pongo_stick = true

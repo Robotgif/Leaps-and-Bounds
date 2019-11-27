@@ -1,21 +1,21 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://code/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/meek_art/player/idle/player_idle1.png" type="Texture" id=2]
 [ext_resource path="res://art/meek_art/player/idle/player_idle2.png" type="Texture" id=3]
 [ext_resource path="res://art/meek_art/player/idle/player_idle3.png" type="Texture" id=4]
 [ext_resource path="res://art/meek_art/player/idle/player_idle4.png" type="Texture" id=5]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_gunright.png" type="Texture" id=6]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_gunup.png" type="Texture" id=7]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_nogun.png" type="Texture" id=8]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_gunright.png" type="Texture" id=9]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_gunup.png" type="Texture" id=10]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_nogun.png" type="Texture" id=11]
-[ext_resource path="res://art/meek_art/player/jump/jump.png" type="Texture" id=12]
-[ext_resource path="res://art/meek_art/player/jump/jump_gun_right.png" type="Texture" id=13]
-[ext_resource path="res://art/meek_art/player/jump/jump_gun_up.png" type="Texture" id=14]
-[ext_resource path="res://art/meek_art/player/idle/idle_shoot_right.png" type="Texture" id=15]
-[ext_resource path="res://art/meek_art/player/idle/idle_shoot_up.png" type="Texture" id=16]
+[ext_resource path="res://art/meek_art/player/jump/jump.png" type="Texture" id=6]
+[ext_resource path="res://art/meek_art/player/jump/jump_gun_right.png" type="Texture" id=7]
+[ext_resource path="res://art/meek_art/player/jump/jump_gun_up.png" type="Texture" id=8]
+[ext_resource path="res://art/meek_art/player/idle/idle_shoot_right.png" type="Texture" id=9]
+[ext_resource path="res://art/meek_art/player/idle/idle_shoot_up.png" type="Texture" id=10]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_gunright.png" type="Texture" id=11]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_gunup.png" type="Texture" id=12]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_nogun.png" type="Texture" id=13]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_gunright.png" type="Texture" id=14]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_gunup.png" type="Texture" id=15]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_nogun.png" type="Texture" id=16]
 [ext_resource path="res://art/meek_art/player/run/run1.png" type="Texture" id=17]
 [ext_resource path="res://art/meek_art/player/run/run2.png" type="Texture" id=18]
 [ext_resource path="res://art/meek_art/player/run/run3.png" type="Texture" id=19]
@@ -24,31 +24,28 @@
 [ext_resource path="res://art/meek_art/player/run/run6.png" type="Texture" id=22]
 [ext_resource path="res://art/meek_art/player/run/run7.png" type="Texture" id=23]
 [ext_resource path="res://art/meek_art/player/run/run8.png" type="Texture" id=24]
-[ext_resource path="res://assests/detect_platform.tscn" type="PackedScene" id=25]
-[ext_resource path="res://art/test/particles_desintegrate.png" type="Texture" id=26]
+[ext_resource path="res://art/test/particles_desintegrate.png" type="Texture" id=25]
 
-[sub_resource type="GDScript" id=1]
-
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": false,
-"name": "pongo_stick",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": false,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": false,
 "name": "gun",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "pongo_stick",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
@@ -57,19 +54,19 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 3.87811, 3.36335 )
+[sub_resource type="CapsuleShape2D" id=2]
+height = 4.0
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0.191429, 0.588571, 1 )
 colors = PoolColorArray( 0.207031, 0.161205, 0.0526704, 1, 1, 0, 0, 1, 1, 0.5625, 0, 1 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 2
-emission_box_extents = Vector3( 50, 50, 1 )
+emission_box_extents = Vector3( 10, 10, 1 )
 flag_disable_z = true
 gravity = Vector3( 0, 120, 0 )
 angular_velocity = 1.41531e-43
@@ -77,62 +74,60 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 45.0
 angle_random = 1.0
-scale = 10.0
+scale = 2.0
 scale_random = 1.0
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 4 )
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 100
 collision_layer = 2
-collision_mask = 25
+collision_mask = 9
 script = ExtResource( 1 )
-fire_rate = 0.1
+run_speed = 150
+jump_speed = -600
+jump_speed_super = -850
+score_jump = 50
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 limit_left = 0
 limit_top = -99999999
-limit_right = 800
-limit_bottom = 2250
+limit_right = 448
+limit_bottom = 256
 drag_margin_left = 0.0
 drag_margin_right = 0.0
-script = SubResource( 1 )
 
 [node name="sp_player" type="AnimatedSprite" parent="."]
-scale = Vector2( 2, 2 )
-frames = SubResource( 2 )
-animation = "gun"
-frame = 1
-offset = Vector2( 3, -4.14 )
+position = Vector2( -13, -15 )
+frames = SubResource( 1 )
+animation = "run"
+playing = true
+offset = Vector2( 13, 15 )
 
 [node name="positions_shots" type="Node2D" parent="sp_player"]
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 13, 15 )
 
 [node name="r_pos" type="Position2D" parent="sp_player/positions_shots"]
-position = Vector2( 39, 1 )
+position = Vector2( 15, 9 )
 
 [node name="l_pos" type="Position2D" parent="sp_player/positions_shots"]
-position = Vector2( -28, 0.999992 )
+position = Vector2( -17, 8 )
 scale = Vector2( 1.18959, 0.800921 )
 
 [node name="up_pos" type="Position2D" parent="sp_player/positions_shots"]
-position = Vector2( 13, -36 )
+position = Vector2( 0, -8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -3 )
-scale = Vector2( 5.15715, 5.94646 )
-shape = SubResource( 3 )
-
-[node name="detect_platform" parent="." instance=ExtResource( 25 )]
-position = Vector2( 1, -20 )
+position = Vector2( -1, 9 )
+shape = SubResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 emitting = false
 amount = 120
-lifetime = 2.0
 one_shot = true
-process_material = SubResource( 6 )
-texture = ExtResource( 26 )
+visibility_rect = Rect2( -9.95056, -9.91669, 19.9191, 80.0736 )
+process_material = SubResource( 5 )
+texture = ExtResource( 25 )
 
 [node name="timer_on_air" type="Timer" parent="."]
 wait_time = 2.0

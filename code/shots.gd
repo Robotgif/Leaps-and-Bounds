@@ -10,9 +10,9 @@ var _velocity = Vector2()
 
 func _ready():
 	yield(get_tree().create_timer(livetime), "timeout")
-	free()
-	
-	
+	queue_free()
+
+
 func _physics_process(delta):
 	var collision = move_and_collide(_velocity * delta)
 	if collision:
@@ -20,7 +20,7 @@ func _physics_process(delta):
 
 	# using move_and_slide
 	_velocity = move_and_slide(_velocity)
-	
+
 func set_direction(dir):
 	if dir == shot_dir.LEFT:
 		_velocity.x -= speed
@@ -28,4 +28,3 @@ func set_direction(dir):
 		_velocity.x += speed
 	elif dir == shot_dir.UP:
 		_velocity.y -= speed
-	

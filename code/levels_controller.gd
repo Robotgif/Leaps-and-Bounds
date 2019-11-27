@@ -7,8 +7,13 @@ func _ready():
 	player = get_node("Player")
 	player.set_spawn(player.global_position)
 	global.player = player
+	player.set_lives(global.lives)
+	player.set_health(global.health)
+	player.set_score(global.score)
+	update_huid()
 	
-func update_all():
+	
+func update_huid():
 	$HUID.set_lives(player.get_lives())
 	$HUID.set_score(player.get_score())
 	$HUID.set_health(player.get_health())
@@ -24,7 +29,7 @@ func _on_Player_update_health(health):
 		$transition.interpolate_property(self, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.35,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$transition.start()
-		update_all()
+		update_huid()
 	else:
 		assert(get_tree().reload_current_scene() == OK)
 

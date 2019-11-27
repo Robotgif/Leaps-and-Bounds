@@ -1,101 +1,122 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://code/platform.gd" type="Script" id=1]
 [ext_resource path="res://art/test/breaklable_particle.png" type="Texture" id=2]
 [ext_resource path="res://art/meek_art/platforms/solid_large.png" type="Texture" id=3]
 [ext_resource path="res://art/meek_art/platforms/solid_small.png" type="Texture" id=4]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.6226, 6.0071 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 31.0995, 4.35086 )
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 75.744, 10 )
-
-[sub_resource type="ParticlesMaterial" id=2]
-trail_divisor = 2
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
-emission_box_extents = Vector3( 60, 10, 1 )
+emission_box_extents = Vector3( 30, 10, 1 )
 flag_disable_z = true
 gravity = Vector3( 0, 98, 0 )
 angular_velocity = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 2.0
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 81.4921, 4.57138 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 78.615, 11.0279 )
+extents = Vector2( 31.1641, 5.12525 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 42.5825, 15.0492 )
+extents = Vector2( 15.3571, 5.342 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "left_right"
+length = 2.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("breakable:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1.2, 1.8, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -100, 0 ), Vector2( 0, 0 ), Vector2( 100, 0 ), Vector2( 0, 0 ) ]
+}
 
 [node name="platform" type="Node2D"]
-position = Vector2( 0, -1.06942 )
 script = ExtResource( 1 )
 
-[node name="breakable" type="StaticBody2D" parent="."]
-collision_layer = 8
+[node name="Area2D" type="Area2D" parent="."]
+editor/display_folded = true
+input_pickable = false
+collision_layer = 16
 collision_mask = 2
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -2.59104, -3.06925 )
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="breakable" type="KinematicBody2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 2
+motion/sync_to_physics = true
+
 [node name="timer_gone" type="Timer" parent="breakable"]
+wait_time = 0.2
 one_shot = true
 
 [node name="collider" type="CollisionShape2D" parent="breakable"]
-position = Vector2( -7.36841, -7.6799 )
-shape = SubResource( 6 )
+position = Vector2( -2.53757, -1.86978 )
+shape = SubResource( 2 )
 disabled = true
 one_way_collision = true
+one_way_collision_margin = 0.0
 
 [node name="particles" type="Particles2D" parent="breakable"]
 position = Vector2( 0, 0.397217 )
 emitting = false
-amount = 7
-lifetime = 2.0
-process_material = SubResource( 2 )
+amount = 4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 3 )
 texture = ExtResource( 2 )
 
 [node name="img" type="Sprite" parent="breakable"]
-scale = Vector2( 2.5, 2.23684 )
 texture = ExtResource( 3 )
 
-[node name="dectect_collision" type="Area2D" parent="breakable"]
-position = Vector2( -7.54707, -20.6551 )
-monitoring = false
-collision_layer = 8
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="breakable/dectect_collision"]
-shape = SubResource( 3 )
-one_way_collision = true
-
 [node name="long" type="StaticBody2D" parent="."]
-collision_layer = 8
+editor/display_folded = true
+collision_layer = 16
 collision_mask = 2
 
 [node name="collider" type="CollisionShape2D" parent="long"]
-position = Vector2( -5.86108, -4.66525 )
+position = Vector2( -3.87311, -1.60267 )
 shape = SubResource( 4 )
 disabled = true
 one_way_collision = true
 
 [node name="img" type="Sprite" parent="long"]
-scale = Vector2( 2.5, 2.23684 )
 texture = ExtResource( 3 )
 
 [node name="short" type="StaticBody2D" parent="."]
 editor/display_folded = true
-collision_layer = 8
+visible = false
+collision_layer = 16
 collision_mask = 2
 
 [node name="collider" type="CollisionShape2D" parent="short"]
-position = Vector2( -2.84638, -3.1579 )
+position = Vector2( -2.00334, -1.86978 )
 shape = SubResource( 5 )
 disabled = true
 one_way_collision = true
 
 [node name="img" type="Sprite" parent="short"]
-scale = Vector2( 2.5, 2.23684 )
 texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 1
+anims/left_right = SubResource( 6 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="breakable/timer_gone" to="." method="_on_timer_gone_timeout"]
-[connection signal="body_entered" from="breakable/dectect_collision" to="." method="_on_Area2D_body_entered"]
