@@ -1,19 +1,20 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://code/shots.gd" type="Script" id=1]
+[ext_resource path="res://code/bullet.gd" type="Script" id=1]
 [ext_resource path="res://art/test/shots.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.27714
 
-[node name="shots" type="KinematicBody2D"]
+[node name="bullet" type="KinematicBody2D"]
 position = Vector2( 223.328, 56.697 )
 collision_layer = 32
-collision_mask = 8
+collision_mask = 4
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+speed = 300
 
 [node name="img" type="Sprite" parent="."]
 position = Vector2( -0.0330219, 0.32689 )

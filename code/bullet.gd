@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 export var speed: int = 800
 export var livetime: int = 1
+export var damage: int = 1
 
 enum shot_dir {LEFT, RIGHT, UP}
 
@@ -14,10 +15,12 @@ func _ready():
 
 
 func _physics_process(delta):
-	var collision = move_and_collide(_velocity * delta)
-	if collision:
-	    _velocity = _velocity.slide(collision.normal)
-
+	if get_slide_count() > 0:
+		var collision = get_slide_collision(0)
+		if collision and collision.collider.name == "alien":
+			collision.collider.take_damage(damage)
+			destroy()
+			
 	# using move_and_slide
 	_velocity = move_and_slide(_velocity)
 
@@ -28,3 +31,6 @@ func set_direction(dir):
 		_velocity.x += speed
 	elif dir == shot_dir.UP:
 		_velocity.y -= speed
+
+func destroy():
+	queue_free()

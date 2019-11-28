@@ -37,4 +37,5 @@ func _on_Player_update_score(score):
 	$HUID.set_score(score)
 	
 func _on_fallen_body_entered(body):
-	player.die()
+	if body.name == "Player":
+		player.die()

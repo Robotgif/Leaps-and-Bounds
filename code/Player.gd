@@ -17,7 +17,7 @@ export (float) var jump_delay = .3
 
 enum DIR_SHOSTS  {LEFT, RIGHT, UP}
 
-onready var bullet = preload("res://assests/shots.tscn")
+onready var bullet = preload("res://assests/bullet.tscn")
 onready var timer_on_air = $timer_on_air
 onready var sp_player = $sp_player
 onready var root_node = get_tree().get_root()
@@ -39,6 +39,7 @@ var pongo_stick = false
 var release_action_active = false
 var _touch_floor = true
 var can_show_jump = false
+var _touch_bounce = false
 
 func get_score_level():
 	return score_level
@@ -78,7 +79,11 @@ func spawn():
 	position = _pos_spawn
 	$sp_player.visible = true
 	_health_moment = health
-	
+
+func touch_bounce(jump_force):
+	_touch_bounce = true	
+	_jump_speed_moment = jump_force
+	print(_jump_speed_moment)
 	
 func _ready():
 	size_viewport = get_viewport_rect().size
@@ -97,10 +102,12 @@ func _get_input():
 	var jump = Input.is_action_pressed("jump")
 	var jump_release = Input.is_action_just_released("jump")
 	var down = Input.is_action_pressed("down")
-	
+	if _touch_bounce:
+		_touch_bounce = false
+		_velocity.y = _jump_speed_moment
+		
 	if jump_release and pongo_stick:
 		pongo_stick = false
-		
 	if is_on_floor():
 		_touch_floor = true
 		timer_on_air.stop()
@@ -108,9 +115,7 @@ func _get_input():
 	if not is_on_floor() and $timer_on_air.is_stopped():
 		timer_on_air.start()
 		_touch_floor = false
-		
 	
-			
 	if is_on_floor() and not jump and not down: #exit pongo stick
 		release_action_active = false
 		pongo_stick = false
@@ -121,8 +126,9 @@ func _get_input():
 		_jump_speed_moment = jump_speed_super
 		pongo_stick = true
 	elif is_on_floor() and jump:
+		_touch_bounce = false
 		_velocity.y = _jump_speed_moment
-		set_collision_mask_bit(4, false)
+		#set_collision_mask_bit(4, false)
 	elif not is_on_floor() and not jump:
 		release_action_active = true	
 
@@ -222,8 +228,8 @@ func desintegrated():
 		_health_moment = 0
 		lives -= 1
 		$sp_player.visible = false
-		$Particles2D.emitting = true
-		$Particles2D.show()
+		$particle_destroy.emitting = true
+		$particle_destroy.show()
 		timer_on_air.stop()
 		emit_signal("update_health", _health_moment)
 		
@@ -233,8 +239,8 @@ func die():
 		_health_moment = 0
 		lives -= 1
 		$sp_player.visible = false
-		$Particles2D.emitting = true
-		$Particles2D.show()
+		$particle_destroy.emitting = true
+		$particle_destroy.show()
 		timer_on_air.stop()
 		emit_signal("update_health", _health_moment)
 

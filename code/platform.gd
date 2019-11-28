@@ -1,12 +1,13 @@
 #warning-ignore-all:unused_variable
 extends Node2D
 
-var collider = null
 
-enum TYPES_PLATFORMS {BREAKABLE, SHORT, LONG, MOVING}
+enum TYPES_PLATFORMS {BREAKABLE, SHORT, LONG, MOVING, BOUNCE}
 
 export (TYPES_PLATFORMS) var type  = TYPES_PLATFORMS.LONG
+export var bounce_force = -1000
 
+var collider = null
 
 func disable_all():
 	$breakable.visible = false
@@ -15,7 +16,11 @@ func disable_all():
 	$short/collider.disabled = true
 	$long.visible = false
 	$long/collider.disabled = true
-
+	$moving.visible = false
+	$moving/collider.disabled = true
+	$bounce.visible = false
+	$bounce/collider.disabled = true
+	
 func _ready():
 	disable_all()
 	if type == TYPES_PLATFORMS.BREAKABLE:
@@ -32,15 +37,22 @@ func _ready():
 		collider = $long
 	elif type == TYPES_PLATFORMS.MOVING:
 		$AnimationPlayer.play("left_right")
-		$breakable.visible = true
-		$breakable/collider.disabled = false
-		collider = $breakable
+		$moving.visible = true
+		$moving/collider.disabled = false
+		collider = $moving
+	elif type == TYPES_PLATFORMS.BOUNCE:
+		$bounce.visible = true
+		$bounce/collider.disabled = false
+		collider = $bounce
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
 		collider.set_collision_mask_bit(1, true)
-		if type == TYPES_PLATFORMS.BREAKABLE and body.is_on_floor():
+		if type == TYPES_PLATFORMS.BREAKABLE:
 			$breakable/timer_gone.start()
+		if type == TYPES_PLATFORMS.BOUNCE:
+			body.touch_bounce(bounce_force)
+		
 		
 func _on_timer_gone_timeout():
 	$breakable/collider.disabled = true

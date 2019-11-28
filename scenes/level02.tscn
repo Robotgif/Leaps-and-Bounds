@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://code/levels_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUID.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assests/background_scroll.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assests/platforms.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assests/next_level.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/alien.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assests/next_level.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 246, 20 )
@@ -27,7 +28,6 @@ scroll_base_offset = Vector2( 224, 128 )
 position = Vector2( 193.38, 181.37 )
 
 [node name="platforms" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 193.063, -67.2784 )
 
 [node name="platform2" parent="platforms" instance=ExtResource( 5 )]
@@ -38,6 +38,9 @@ position = Vector2( 98.4468, 127.278 )
 
 [node name="platform4" parent="platforms" instance=ExtResource( 5 )]
 position = Vector2( -35.4263, 67.2784 )
+
+[node name="alien" parent="platforms/platform4" instance=ExtResource( 6 )]
+position = Vector2( 1.79491, 95.8872 )
 
 [node name="platform5" parent="platforms" instance=ExtResource( 5 )]
 position = Vector2( 95.9092, -28.1429 )
@@ -82,11 +85,11 @@ type = 1
 position = Vector2( -37.5532, -293.722 )
 type = 0
 
-[node name="next_level" parent="." instance=ExtResource( 6 )]
+[node name="next_level" parent="." instance=ExtResource( 7 )]
 position = Vector2( 157.637, -811.876 )
 node_transition = NodePath("../../level02/transition")
 
-[node name="init" parent="." instance=ExtResource( 6 )]
+[node name="init" parent="." instance=ExtResource( 7 )]
 position = Vector2( 231.317, 187.466 )
 node_transition = NodePath("../../level02/transition")
 type = 1
@@ -103,7 +106,7 @@ shape = SubResource( 1 )
 
 [node name="transition" type="Tween" parent="."]
 
-[node name="bounds" parent="." instance=ExtResource( 7 )]
+[node name="bounds" parent="." instance=ExtResource( 8 )]
 position = Vector2( 224, 128 )
 [connection signal="update_health" from="Player" to="." method="_on_Player_update_health"]
 [connection signal="update_score" from="Player" to="." method="_on_Player_update_score"]
