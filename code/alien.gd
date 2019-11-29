@@ -1,9 +1,11 @@
 extends KinematicBody2D
 
 onready var raycast = $RayCast2D
+onready var timer = $Timer
 
 export var health = 1
 export var speed = 10
+export var score = 100
 
 var gravity = 100
 
@@ -22,5 +24,8 @@ func _physics_process(delta):
 func die():
 	$AnimatedSprite.visible = false
 	$destroy.emitting = true
-	yield(get_tree().create_timer(.5), "timeout")
+	global.player.take_score(score)
+	timer.start()
+	
+func _on_Timer_timeout():
 	queue_free()

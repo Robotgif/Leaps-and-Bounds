@@ -11,7 +11,7 @@ script = ExtResource( 1 )
 
 [node name="bounds_right" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 34
 
 [node name="collision_right" type="CollisionShape2D" parent="bounds_right"]
 position = Vector2( -134.036, 0.387562 )
@@ -19,7 +19,7 @@ shape = SubResource( 1 )
 
 [node name="bounds_left" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 34
 
 [node name="collision_left" type="CollisionShape2D" parent="bounds_left"]
 position = Vector2( 134.173, 0.578697 )

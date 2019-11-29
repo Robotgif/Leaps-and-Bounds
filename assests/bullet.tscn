@@ -1,26 +1,45 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://code/bullet.gd" type="Script" id=1]
-[ext_resource path="res://art/test/shots.png" type="Texture" id=2]
+[ext_resource path="res://art/meek_art/player/gun/bullet1.png" type="Texture" id=2]
+[ext_resource path="res://art/meek_art/player/gun/bullet2.png" type="Texture" id=3]
+[ext_resource path="res://art/meek_art/player/gun/bullet3.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 5.27714
+radius = 4.19865
+
+[sub_resource type="Animation" id=2]
+resource_name = "bullet"
+tracks/0/type = "value"
+tracks/0/path = NodePath("img:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
+}
 
 [node name="bullet" type="KinematicBody2D"]
 position = Vector2( 223.328, 56.697 )
 collision_layer = 32
-collision_mask = 4
+collision_mask = 13
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-speed = 300
 
 [node name="img" type="Sprite" parent="."]
 position = Vector2( -0.0330219, 0.32689 )
-scale = Vector2( 0.993396, 1.07264 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.160156, -0.154457 )
+position = Vector2( 0.0679476, 0.87209 )
 shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/bullet = SubResource( 2 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -18,6 +18,7 @@ export (float) var jump_delay = .3
 enum DIR_SHOSTS  {LEFT, RIGHT, UP}
 
 onready var bullet = preload("res://assests/bullet.tscn")
+
 onready var timer_on_air = $timer_on_air
 onready var sp_player = $sp_player
 onready var root_node = get_tree().get_root()
@@ -75,7 +76,7 @@ func take_score(score):
 	emit_signal("update_score", _score)
 	
 func spawn():
-	$Particles2D.visible = false
+	$particle_destroy.visible = false
 	position = _pos_spawn
 	$sp_player.visible = true
 	_health_moment = health

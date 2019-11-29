@@ -31,6 +31,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.189606, -0.189613 )
 frames = SubResource( 2 )
+frame = 4
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -39,3 +40,7 @@ cast_to = Vector2( 0, 25 )
 collision_mask = 9
 
 [node name="destroy" parent="." instance=ExtResource( 7 )]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
