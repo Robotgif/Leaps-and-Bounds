@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://art/test/particles_desintegrate.png" type="Texture" id=1]
+[ext_resource path="res://art/aux_art/particles_desintegrate.png" type="Texture" id=1]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.191429, 0.588571, 1 )

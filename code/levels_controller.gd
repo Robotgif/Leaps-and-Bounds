@@ -10,6 +10,7 @@ func _ready():
 	player.set_lives(global.lives)
 	player.set_health(global.health)
 	player.set_score(global.score)
+	$HUID.set_max_value(player.health)
 	update_huid()
 	
 	
@@ -19,19 +20,22 @@ func update_huid():
 	$HUID.set_health(player.get_health())
 
 func _on_Player_update_health(health):
-	yield(get_tree().create_timer(.5), "timeout")
-	$transition.interpolate_property(self, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.35,
-	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$transition.start()
-	yield(get_tree().create_timer(.5), "timeout")
-	if player.lives > 0:
-		player.spawn()
-		$transition.interpolate_property(self, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.35,
+	if health > 0:
+		$HUID.set_health(health)
+	else:
+		yield(get_tree().create_timer(.5), "timeout")
+		$transition.interpolate_property(self, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.35,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$transition.start()
-		update_huid()
-	else:
-		assert(get_tree().reload_current_scene() == OK)
+		yield(get_tree().create_timer(.5), "timeout")
+		if player.lives > 0:
+			player.spawn()
+			$transition.interpolate_property(self, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.35,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			$transition.start()
+			update_huid()
+		else:
+			assert(get_tree().reload_current_scene() == OK)
 
 func _on_Player_update_score(score):
 	$HUID.set_score(score)

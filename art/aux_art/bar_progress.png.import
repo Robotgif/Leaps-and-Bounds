@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/platforms.png-d0bb784856666e63c17e01c857a30405.stex"
+path="res://.import/bar_progress.png-281fe4ad46b32714f17863438e89d623.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/test/platforms.png"
-dest_files=[ "res://.import/platforms.png-d0bb784856666e63c17e01c857a30405.stex" ]
+source_file="res://art/aux_art/bar_progress.png"
+dest_files=[ "res://.import/bar_progress.png-281fe4ad46b32714f17863438e89d623.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

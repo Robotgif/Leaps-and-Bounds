@@ -38,4 +38,5 @@ motion_scale = Vector2( 1, 0.05 )
 motion_mirroring = Vector2( 0, 256 )
 
 [node name="tractorbeam" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 0, 128 )
 texture = ExtResource( 5 )

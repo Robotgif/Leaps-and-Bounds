@@ -6,7 +6,7 @@
 [ext_resource path="res://art/meek_art/player/gun/bullet3.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 4.19865
+radius = 3.36897
 
 [sub_resource type="Animation" id=2]
 resource_name = "bullet"
@@ -24,7 +24,6 @@ tracks/0/keys = {
 }
 
 [node name="bullet" type="KinematicBody2D"]
-position = Vector2( 223.328, 56.697 )
 collision_layer = 32
 collision_mask = 13
 script = ExtResource( 1 )

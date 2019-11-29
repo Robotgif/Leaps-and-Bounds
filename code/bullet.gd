@@ -14,6 +14,8 @@ enum shot_dir {LEFT, RIGHT, UP}
 
 var _velocity = Vector2()
 var first_time = true
+var scale_impact = 1
+var rot_impact  = 0
 
 func _ready():
 	$AnimationPlayer.play("bullet")
@@ -30,8 +32,8 @@ func _physics_process(delta):
 		
 	if get_slide_count() > 0:
 		var collision = get_slide_collision(0)
-		if collision:
-			if collision.collider.name == "alien":
+		if collision and collision.collider:
+			if "alien" in collision.collider.name :
 				collision.collider.take_damage(damage)
 			destroy()
 			
@@ -41,15 +43,22 @@ func _physics_process(delta):
 func set_direction(dir):
 	if dir == shot_dir.LEFT:
 		_velocity.x -= speed
+		rot_impact = 0
+		scale_impact = -1
 	elif dir == shot_dir.RIGHT:
 		_velocity.x += speed
+		rot_impact = 0
+		scale_impact = 1
 	elif dir == shot_dir.UP:
 		rotation_degrees = 90
 		_velocity.y -= speed
+		rot_impact = -90
+		scale_impact = 1
 
 func destroy():
 	var _impact = impact.instance()
 	_impact.global_position = global_position
+	_impact.show_mode(rot_impact, scale_impact)
 	root.add_child(_impact)
 	visible = false
 	timer.wait_time = 0.3

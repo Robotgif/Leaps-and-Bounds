@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://code/muzzle.gd" type="Script" id=1]
-[ext_resource path="res://art/meek_art/player/gun/muzzleflash1.png" type="Texture" id=2]
-[ext_resource path="res://art/meek_art/player/gun/muzzleflash2.png" type="Texture" id=3]
+[ext_resource path="res://art/meek_art/player/dust/dust_1.png" type="Texture" id=2]
+[ext_resource path="res://art/meek_art/player/dust/dust_2.png" type="Texture" id=3]
+[ext_resource path="res://art/meek_art/player/dust/dust_3.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "muzzle"
-length = 0.3
+length = 0.5
+loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -14,10 +17,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ), ExtResource( 3 ) ]
+"values": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -26,7 +29,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -43,4 +46,5 @@ playback_process_mode = 0
 anims/muzzle = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+position = Vector2( 0.11018, 13.0016 )
+texture = ExtResource( 2 )

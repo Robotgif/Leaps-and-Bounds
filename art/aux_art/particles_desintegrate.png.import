@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bounds.png-01ae14205942c918a7d5a292d46c70af.stex"
+path="res://.import/particles_desintegrate.png-c6a3e7ad91585c52203d518c22fa4a67.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/test/bounds.png"
-dest_files=[ "res://.import/bounds.png-01ae14205942c918a7d5a292d46c70af.stex" ]
+source_file="res://art/aux_art/particles_desintegrate.png"
+dest_files=[ "res://.import/particles_desintegrate.png-c6a3e7ad91585c52203d518c22fa4a67.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

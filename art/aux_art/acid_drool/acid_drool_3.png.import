@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player.png-29263cf64ef413131647752080a21044.stex"
+path="res://.import/acid_drool_3.png-9daa5d38aa35db5d628801a9825ad1c3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/test/player.png"
-dest_files=[ "res://.import/player.png-29263cf64ef413131647752080a21044.stex" ]
+source_file="res://art/aux_art/acid_drool/acid_drool_3.png"
+dest_files=[ "res://.import/acid_drool_3.png-9daa5d38aa35db5d628801a9825ad1c3.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

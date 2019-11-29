@@ -62,14 +62,16 @@ shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="breakable" type="KinematicBody2D" parent="."]
-editor/display_folded = true
 visible = false
-collision_layer = 17
+collision_layer = 16
 collision_mask = 2
 motion/sync_to_physics = true
 
 [node name="timer_gone" type="Timer" parent="breakable"]
-wait_time = 0.2
+wait_time = 0.1
+one_shot = true
+
+[node name="timer_destroy" type="Timer" parent="breakable"]
 one_shot = true
 
 [node name="collider" type="CollisionShape2D" parent="breakable"]
@@ -93,7 +95,7 @@ texture = ExtResource( 2 )
 
 [node name="moving" type="KinematicBody2D" parent="."]
 editor/display_folded = true
-collision_layer = 17
+collision_layer = 16
 collision_mask = 2
 motion/sync_to_physics = true
 __meta__ = {
@@ -111,8 +113,7 @@ one_way_collision_margin = 0.0
 texture = ExtResource( 3 )
 
 [node name="bounce" type="KinematicBody2D" parent="."]
-editor/display_folded = true
-collision_layer = 17
+collision_layer = 16
 collision_mask = 2
 motion/sync_to_physics = true
 
@@ -130,7 +131,7 @@ texture = ExtResource( 4 )
 [node name="long" type="StaticBody2D" parent="."]
 editor/display_folded = true
 visible = false
-collision_layer = 17
+collision_layer = 16
 collision_mask = 2
 
 [node name="collider" type="CollisionShape2D" parent="long"]
@@ -145,7 +146,7 @@ texture = ExtResource( 5 )
 [node name="short" type="StaticBody2D" parent="."]
 editor/display_folded = true
 visible = false
-collision_layer = 17
+collision_layer = 16
 collision_mask = 2
 
 [node name="collider" type="CollisionShape2D" parent="short"]
@@ -162,3 +163,4 @@ pause_mode = 1
 anims/left_right = SubResource( 7 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="breakable/timer_gone" to="." method="_on_timer_gone_timeout"]
+[connection signal="timeout" from="breakable/timer_destroy" to="." method="_on_timer_destroy_timeout"]

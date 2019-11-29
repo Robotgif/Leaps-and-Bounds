@@ -4,10 +4,10 @@ signal update_health
 signal update_score
 
 
-export (int) var run_speed = 400
+export (int) var run_speed = 100
 export (int) var gravty = 1500
-export (int) var jump_speed = -1000
-export (int) var jump_speed_super = -1300
+export (int) var jump_speed = -400
+export (int) var jump_speed_super = -600
 export (int) var score_level = 1000
 export (int) var score_jump = 10
 export (int) var lives = 3
@@ -18,6 +18,7 @@ export (float) var jump_delay = .3
 enum DIR_SHOSTS  {LEFT, RIGHT, UP}
 
 onready var bullet = preload("res://assests/bullet.tscn")
+onready var dust = preload("res://assests/juice_dust.tscn")
 
 onready var timer_on_air = $timer_on_air
 onready var sp_player = $sp_player
@@ -67,24 +68,28 @@ func set_spawn(pos: Vector2):
 	_pos_spawn = pos
 	
 func take_damage(damage):
-	_health_moment -= damage
-	emit_signal("update_health", _health_moment)
+	_touch_bounce = true
+	_jump_speed_moment = jump_speed
+	if _health_moment - damage <= 0:
+		die()
+	else:
+		_health_moment -= damage
+		emit_signal("update_health", _health_moment)
 
-	
 func take_score(score):
 	_score += score
 	emit_signal("update_score", _score)
 	
 func spawn():
 	$particle_destroy.visible = false
-	position = _pos_spawn
+	global_position = _pos_spawn
 	$sp_player.visible = true
 	_health_moment = health
 
 func touch_bounce(jump_force):
 	_touch_bounce = true	
 	_jump_speed_moment = jump_force
-	print(_jump_speed_moment)
+	
 	
 func _ready():
 	size_viewport = get_viewport_rect().size
@@ -103,6 +108,7 @@ func _get_input():
 	var jump = Input.is_action_pressed("jump")
 	var jump_release = Input.is_action_just_released("jump")
 	var down = Input.is_action_pressed("down")
+	
 	if _touch_bounce:
 		_touch_bounce = false
 		_velocity.y = _jump_speed_moment
@@ -122,6 +128,7 @@ func _get_input():
 		pongo_stick = false
 		_jump_speed_moment = jump_speed
 	elif is_on_floor() and down:
+		print("illoooooooo")
 		get_slide_collision(0).collider.set_collision_mask_bit(1, false)
 	elif not is_on_floor() and jump and release_action_active:
 		_jump_speed_moment = jump_speed_super
@@ -129,7 +136,10 @@ func _get_input():
 	elif is_on_floor() and jump:
 		_touch_bounce = false
 		_velocity.y = _jump_speed_moment
-		#set_collision_mask_bit(4, false)
+		if pongo_stick:
+			var _dust = dust.instance()
+			_dust.global_position = global_position
+			root_node.add_child(_dust)
 	elif not is_on_floor() and not jump:
 		release_action_active = true	
 
@@ -226,13 +236,7 @@ func _physics_process(delta):
 
 func desintegrated():
 	if _health_moment > 0:
-		_health_moment = 0
-		lives -= 1
-		$sp_player.visible = false
-		$particle_destroy.emitting = true
-		$particle_destroy.show()
-		timer_on_air.stop()
-		emit_signal("update_health", _health_moment)
+		die()
 		
 
 func die():

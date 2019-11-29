@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/breaklable_particle.png-c200601d1b02c06b8ea772e9f367dfd9.stex"
+path="res://.import/acid_drool_4.png-cbe3089ce63141e0fb42e1ab23bc5ff0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/test/breaklable_particle.png"
-dest_files=[ "res://.import/breaklable_particle.png-c200601d1b02c06b8ea772e9f367dfd9.stex" ]
+source_file="res://art/aux_art/acid_drool/acid_drool_4.png"
+dest_files=[ "res://.import/acid_drool_4.png-cbe3089ce63141e0fb42e1ab23bc5ff0.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -1,11 +1,12 @@
 #warning-ignore-all:unused_variable
 extends Node2D
 
+onready var collider_area = $Area2D
 
 enum TYPES_PLATFORMS {BREAKABLE, SHORT, LONG, MOVING, BOUNCE}
 
 export (TYPES_PLATFORMS) var type  = TYPES_PLATFORMS.LONG
-export var bounce_force = -1000
+export var bounce_force = - 800
 
 var collider = null
 
@@ -44,20 +45,23 @@ func _ready():
 		$bounce.visible = true
 		$bounce/collider.disabled = false
 		collider = $bounce
-
+		
+	
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
 		collider.set_collision_mask_bit(1, true)
-		if type == TYPES_PLATFORMS.BREAKABLE:
-			$breakable/timer_gone.start()
-		if type == TYPES_PLATFORMS.BOUNCE:
-			body.touch_bounce(bounce_force)
+		if body.is_on_floor():
+			if type == TYPES_PLATFORMS.BREAKABLE:
+				$breakable/timer_gone.start()
+			if type == TYPES_PLATFORMS.BOUNCE:
+				body.touch_bounce(bounce_force)
 		
 		
 func _on_timer_gone_timeout():
 	$breakable/collider.disabled = true
 	$breakable/particles.emitting = true
 	$breakable/img.visible = false
-			
-	
-	
+	$breakable/timer_destroy.start()
+
+func _on_timer_destroy_timeout():
+	queue_free()

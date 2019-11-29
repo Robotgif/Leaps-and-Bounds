@@ -13,7 +13,7 @@
 extents = Vector2( 246, 20 )
 
 [node name="level01" type="Node2D"]
-position = Vector2( -1.50977, 0 )
+position = Vector2( -1.50977, 730 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ 85.0, 361.0 ]
@@ -25,79 +25,87 @@ __meta__ = {
 scroll_base_offset = Vector2( 224, 128 )
 
 [node name="alien" parent="." instance=ExtResource( 4 )]
-position = Vector2( 158.51, 95 )
+position = Vector2( 152.227, 77.9527 )
+
+[node name="alien2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 217.637, 65.9527 )
+
+[node name="alien3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 291.161, 65.9527 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 232.51, 149 )
-jump_speed_super = -750
+position = Vector2( 233.637, 180 )
+run_speed = 125
+jump_speed = -450
+jump_speed_super = -650
 
 [node name="platforms" type="Node2D" parent="."]
-editor/display_folded = true
-position = Vector2( 193.063, -67.2784 )
+z_index = -3
 
 [node name="platform" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 44.3904, 284.131 )
+position = Vector2( 234.047, 216.853 )
 
 [node name="platform2" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( -31.5532, 197.278 )
+position = Vector2( 171.566, 188 )
 
 [node name="platform3" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 98.4468, 127.278 )
+position = Vector2( 217.637, 152 )
 type = 4
 
 [node name="platform4" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( -35.4263, 67.2784 )
+position = Vector2( 121.51, 160 )
+type = 0
 
 [node name="platform5" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 95.9092, -28.1429 )
-type = 3
+position = Vector2( 301.51, 110 )
+type = 0
 
 [node name="platform6" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 1.90919, -92.7216 )
+position = Vector2( 142.227, 57.9527 )
 
 [node name="platform7" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 126.784, -94.3243 )
+position = Vector2( 217.637, 100 )
 
 [node name="platform8" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 68.4468, -162.722 )
+position = Vector2( 195.099, 20 )
 
 [node name="platform9" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 68.4468, -242.722 )
+position = Vector2( 306.1, 674.37 )
 
 [node name="platform11" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 120.447, -341.722 )
+position = Vector2( 193.764, -10 )
 
 [node name="platform12" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 141.447, -421.722 )
+position = Vector2( 131.51, 18.1302 )
 type = 1
 
 [node name="platform13" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 16.5482, -481.927 )
+position = Vector2( 127.637, -30 )
 type = 3
 
 [node name="platform14" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( -49.2099, -532.722 )
+position = Vector2( 263.108, -2 )
 type = 1
 
 [node name="platform15" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 54.5737, -582.722 )
+position = Vector2( 326.1, -18 )
 type = 1
 
 [node name="platform16" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( -49.2099, -632.722 )
+position = Vector2( 306.1, 30.0829 )
 type = 1
 
 [node name="platform10" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 14.4468, -299.722 )
+position = Vector2( 317.193, 163.953 )
 type = 0
 
 [node name="next_level" parent="." instance=ExtResource( 7 )]
-position = Vector2( 157.637, -811.876 )
+position = Vector2( 133.764, -770 )
 node_transition = NodePath("../transition")
 
 [node name="fallen" type="Area2D" parent="."]
 editor/display_folded = true
-position = Vector2( 235.45, 260 )
+position = Vector2( 229.764, 290 )
 __meta__ = {
 "_edit_group_": true
 }
