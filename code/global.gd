@@ -5,11 +5,12 @@ extends Node
 var player = null setget set_player
 var score = 0
 var lives = 3
-var health = -1
+var health = 0
 
 func set_player(p):
-	if health < 0:
+	if player == null:
 		score = p.get_score()
 		lives = p.get_lives()
 		health = p.get_health()
 	player = p
+	

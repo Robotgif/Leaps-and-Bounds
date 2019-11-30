@@ -1,14 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://code/levels_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUID.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assests/background_scroll.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assests/platforms/bounce.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assests/platforms/moving.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assests/platforms/long.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assests/platforms/breakable.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assests/actors/alien.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assests/actors/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assests/platforms/bounce.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assests/platforms/moving.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assests/platforms/short.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assests/platforms/long.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assests/platforms/breakable.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assests/next_level.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 246, 20 )
@@ -25,7 +28,18 @@ __meta__ = {
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 scroll_base_offset = Vector2( 224, 128 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="alien" parent="." instance=ExtResource( 4 )]
+position = Vector2( 129.51, -168 )
+
+[node name="alien2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 296.51, -403 )
+behaviour = 1
+
+[node name="alien3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 140.51, -992 )
+behaviour = 2
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 233.637, 180 )
 run_speed = 125
 jump_speed = -450
@@ -34,18 +48,171 @@ jump_speed_super = -650
 [node name="platforms" type="Node2D" parent="."]
 z_index = -3
 
-[node name="bounce" parent="platforms" instance=ExtResource( 5 )]
-position = Vector2( 151.51, 133.78 )
+[node name="bounce" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 316.51, 30 )
 
-[node name="moving" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 291.665, 220 )
+[node name="moving" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( 319.51, -8 )
 movement = 1
 
-[node name="long" parent="platforms" instance=ExtResource( 7 )]
-position = Vector2( 232.637, 220 )
+[node name="moving2" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( 284.51, -401 )
+movement = 2
 
-[node name="breakable" parent="platforms" instance=ExtResource( 8 )]
-position = Vector2( 181.51, 180 )
+[node name="short" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 121.51, 209 )
+
+[node name="short2" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 159.51, 155 )
+
+[node name="short4" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 195.51, -1 )
+
+[node name="short5" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 316.51, -217 )
+
+[node name="short6" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 181.51, -321 )
+
+[node name="long" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 226.51, 233 )
+
+[node name="long3" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 230.51, 146 )
+
+[node name="long5" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 229.51, 103 )
+
+[node name="long6" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 176.51, 65 )
+
+[node name="long11" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 297.51, -151 )
+
+[node name="long15" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 297.51, -303 )
+
+[node name="long17" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 317.51, -463 )
+
+[node name="long26" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 170.51, -717 )
+
+[node name="long29" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 315.51, -796 )
+
+[node name="long22" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 263.51, -591 )
+
+[node name="long20" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 228.51, -516 )
+
+[node name="long28" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 244.51, -770 )
+
+[node name="long32" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 244.51, -770 )
+
+[node name="long24" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 326.51, -642 )
+
+[node name="long12" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 162.51, -255 )
+
+[node name="long7" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 134.51, 28 )
+
+[node name="long10" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 255.51, -188 )
+
+[node name="long16" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 295.51, -359 )
+
+[node name="long18" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 126.51, -509 )
+
+[node name="long25" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 131.51, -761 )
+
+[node name="long31" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 278.51, -839 )
+
+[node name="long21" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 224.51, -635 )
+
+[node name="long19" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 189.51, -560 )
+
+[node name="long27" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 194.51, -812 )
+
+[node name="long30" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 174.51, -880 )
+
+[node name="long23" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 287.51, -686 )
+
+[node name="long13" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 120.51, -292 )
+
+[node name="long8" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 135.51, -37 )
+
+[node name="long9" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 256.51, -253 )
+
+[node name="long14" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 121.51, -357 )
+
+[node name="long4" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 129.51, 125 )
+
+[node name="long2" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 325.51, 155 )
+
+[node name="breakable" parent="platforms" instance=ExtResource( 10 )]
+position = Vector2( 279.51, 190 )
+
+[node name="breakable4" parent="platforms" instance=ExtResource( 10 )]
+position = Vector2( 194.51, 189 )
+
+[node name="breakable3" parent="platforms" instance=ExtResource( 10 )]
+position = Vector2( 304.51, 92 )
+
+[node name="short3" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 344.51, -939 )
+
+[node name="short11" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 345.51, -977 )
+
+[node name="short7" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 304.51, -909 )
+
+[node name="short9" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 257.51, -1072 )
+
+[node name="short8" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 345.51, -1018 )
+
+[node name="short10" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 343.51, -1083 )
+
+[node name="breakable5" parent="platforms" instance=ExtResource( 10 )]
+position = Vector2( 279.51, -432 )
+
+[node name="breakable2" parent="platforms" instance=ExtResource( 10 )]
+position = Vector2( 162.51, 223 )
+
+[node name="breakable6" parent="platforms" instance=ExtResource( 10 )]
+position = Vector2( 301.51, -1052 )
+
+[node name="moving3" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( 254.51, -1113 )
+movement = 2
+
+[node name="moving4" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( 181.51, -1140 )
+movement = 1
 
 [node name="fallen" type="Area2D" parent="."]
 editor/display_folded = true
@@ -60,8 +227,16 @@ shape = SubResource( 1 )
 
 [node name="transition" type="Tween" parent="."]
 
-[node name="bounds" parent="." instance=ExtResource( 9 )]
+[node name="bounds" parent="." instance=ExtResource( 11 )]
 position = Vector2( 224, 128 )
+
+[node name="next_level" parent="." instance=ExtResource( 12 )]
+position = Vector2( 141.51, -1232 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 [connection signal="update_health" from="Player" to="." method="_on_Player_update_health"]
+[connection signal="update_pongo" from="Player" to="." method="_on_Player_update_pongo"]
 [connection signal="update_score" from="Player" to="." method="_on_Player_update_score"]
 [connection signal="body_entered" from="fallen" to="." method="_on_fallen_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

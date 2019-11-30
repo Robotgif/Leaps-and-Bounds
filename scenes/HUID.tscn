@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://code/HUID.gd" type="Script" id=1]
 [ext_resource path="res://art/meek_art/player/idle/player_idle1.png" type="Texture" id=2]
 [ext_resource path="res://art/aux_art/bar_under.png" type="Texture" id=3]
 [ext_resource path="res://art/aux_art/bar_progress.png" type="Texture" id=4]
 [ext_resource path="res://art/fonts/Pacifico-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://art/aux_art/star.png" type="Texture" id=6]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_nogun.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -14,6 +16,7 @@ font_data = ExtResource( 5 )
 script = ExtResource( 1 )
 
 [node name="lives" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( 26.9457, -27.0502 )
 
 [node name="live3" type="Sprite" parent="lives"]
@@ -45,3 +48,23 @@ margin_right = 44.4394
 margin_bottom = 26.5399
 custom_fonts/font = SubResource( 1 )
 text = "0"
+
+[node name="pongo_stick" type="Node2D" parent="."]
+
+[node name="backgroun" type="Sprite" parent="pongo_stick"]
+position = Vector2( 251.644, 18.7857 )
+scale = Vector2( 0.33562, 0.335619 )
+texture = ExtResource( 6 )
+
+[node name="max_pongo" type="Label" parent="pongo_stick"]
+margin_left = 240.079
+margin_top = -4.3845
+margin_right = 281.079
+margin_bottom = 32.6155
+custom_fonts/font = SubResource( 1 )
+text = "0"
+
+[node name="pongo" type="Sprite" parent="pongo_stick"]
+position = Vector2( 258.408, 13.5645 )
+scale = Vector2( 0.609464, 0.609464 )
+texture = ExtResource( 7 )

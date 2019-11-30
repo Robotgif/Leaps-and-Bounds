@@ -4,7 +4,12 @@ extends CanvasLayer
 onready var bar = $TextureProgress
 onready var score_node = $score
 onready var lives_node = $lives
+onready var max_pongo_node = $pongo_stick/max_pongo
 
+
+func set_max_pongo(value):
+	max_pongo_node.text = str(value)
+	
 func set_max_value(health):
 	bar.max_value = health
 

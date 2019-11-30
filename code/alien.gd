@@ -33,8 +33,9 @@ func _ready():
 			speed *= 3
 			health *= 3
 			score *= 3 
-		yield(get_tree().create_timer(randf()*10), "timeout")
-		can_fire = true
+		timer_fire.wait_time = randf()*10
+		timer_fire.start()
+		
 	    
 
 var velocity = Vector2(speed, 1)
@@ -84,3 +85,4 @@ func _on_Area2D_body_entered(body):
 
 func _on_timer_fire_timeout():
 	can_fire = true
+

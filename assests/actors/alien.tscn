@@ -36,7 +36,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.189606, -0.189613 )
 frames = SubResource( 2 )
-frame = 3
+frame = 4
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
