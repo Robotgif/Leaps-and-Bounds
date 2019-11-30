@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://code/levels_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUID.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assests/background_scroll.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/alien.tscn" type="PackedScene" id=4]
-[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assests/platforms.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assests/next_level.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assests/platforms/bounce.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assests/platforms/moving.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assests/platforms/long.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assests/platforms/breakable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 246, 20 )
@@ -24,16 +25,7 @@ __meta__ = {
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 scroll_base_offset = Vector2( 224, 128 )
 
-[node name="alien" parent="." instance=ExtResource( 4 )]
-position = Vector2( 152.227, 77.9527 )
-
-[node name="alien2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 217.637, 65.9527 )
-
-[node name="alien3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 291.161, 65.9527 )
-
-[node name="Player" parent="." instance=ExtResource( 5 )]
+[node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 233.637, 180 )
 run_speed = 125
 jump_speed = -450
@@ -42,70 +34,23 @@ jump_speed_super = -650
 [node name="platforms" type="Node2D" parent="."]
 z_index = -3
 
-[node name="platform" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 234.047, 216.853 )
+[node name="bounce" parent="platforms" instance=ExtResource( 5 )]
+position = Vector2( 151.51, 133.78 )
 
-[node name="platform2" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 171.566, 188 )
+[node name="moving" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 291.665, 220 )
+movement = 1
 
-[node name="platform3" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 217.637, 152 )
-type = 4
+[node name="long" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( 232.637, 220 )
 
-[node name="platform4" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 121.51, 160 )
-type = 0
-
-[node name="platform5" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 301.51, 110 )
-type = 0
-
-[node name="platform6" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 142.227, 57.9527 )
-
-[node name="platform7" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 217.637, 100 )
-
-[node name="platform8" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 195.099, 20 )
-
-[node name="platform9" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 306.1, 674.37 )
-
-[node name="platform11" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 193.764, -10 )
-
-[node name="platform12" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 131.51, 18.1302 )
-type = 1
-
-[node name="platform13" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 127.637, -30 )
-type = 3
-
-[node name="platform14" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 263.108, -2 )
-type = 1
-
-[node name="platform15" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 326.1, -18 )
-type = 1
-
-[node name="platform16" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 306.1, 30.0829 )
-type = 1
-
-[node name="platform10" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 317.193, 163.953 )
-type = 0
-
-[node name="next_level" parent="." instance=ExtResource( 7 )]
-position = Vector2( 133.764, -770 )
-node_transition = NodePath("../transition")
+[node name="breakable" parent="platforms" instance=ExtResource( 8 )]
+position = Vector2( 181.51, 180 )
 
 [node name="fallen" type="Area2D" parent="."]
 editor/display_folded = true
 position = Vector2( 229.764, 290 )
+collision_mask = 2
 __meta__ = {
 "_edit_group_": true
 }
@@ -115,7 +60,7 @@ shape = SubResource( 1 )
 
 [node name="transition" type="Tween" parent="."]
 
-[node name="bounds" parent="." instance=ExtResource( 8 )]
+[node name="bounds" parent="." instance=ExtResource( 9 )]
 position = Vector2( 224, 128 )
 [connection signal="update_health" from="Player" to="." method="_on_Player_update_health"]
 [connection signal="update_score" from="Player" to="." method="_on_Player_update_score"]

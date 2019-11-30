@@ -42,6 +42,7 @@ var release_action_active = false
 var _touch_floor = true
 var can_show_jump = false
 var _touch_bounce = false
+var snap = true
 
 func get_score_level():
 	return score_level
@@ -89,7 +90,7 @@ func spawn():
 func touch_bounce(jump_force):
 	_touch_bounce = true	
 	_jump_speed_moment = jump_force
-	
+		
 	
 func _ready():
 	size_viewport = get_viewport_rect().size
@@ -118,6 +119,7 @@ func _get_input():
 	if is_on_floor():
 		_touch_floor = true
 		timer_on_air.stop()
+		snap = true
 		
 	if not is_on_floor() and $timer_on_air.is_stopped():
 		timer_on_air.start()
@@ -128,12 +130,13 @@ func _get_input():
 		pongo_stick = false
 		_jump_speed_moment = jump_speed
 	elif is_on_floor() and down:
-		print("illoooooooo")
+		snap = false
 		get_slide_collision(0).collider.set_collision_mask_bit(1, false)
 	elif not is_on_floor() and jump and release_action_active:
 		_jump_speed_moment = jump_speed_super
 		pongo_stick = true
 	elif is_on_floor() and jump:
+		snap = false
 		_touch_bounce = false
 		_velocity.y = _jump_speed_moment
 		if pongo_stick:
@@ -230,7 +233,8 @@ func _physics_process(delta):
 			last_position_y = y + 200
 			take_score(score_jump)
 		_velocity.y += gravty * delta
-		_velocity = move_and_slide(_velocity, Vector2(0, -1))
+		var _snap = Vector2.ZERO if not snap else Vector2.DOWN
+		_velocity = move_and_slide_with_snap(_velocity, _snap, Vector2(0, -1))
 
 
 

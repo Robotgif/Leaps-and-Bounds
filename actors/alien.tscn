@@ -1,19 +1,20 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://code/alien.gd" type="Script" id=1]
-[ext_resource path="res://art/meek_art/alien/alien1.png" type="Texture" id=2]
-[ext_resource path="res://art/meek_art/alien/alien2.png" type="Texture" id=3]
-[ext_resource path="res://art/meek_art/alien/alien3.png" type="Texture" id=4]
-[ext_resource path="res://art/meek_art/alien/alien4.png" type="Texture" id=5]
-[ext_resource path="res://art/meek_art/alien/alien5.png" type="Texture" id=6]
-[ext_resource path="res://assests/particles_destroy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assests/acid_enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/meek_art/alien/alien1.png" type="Texture" id=3]
+[ext_resource path="res://art/meek_art/alien/alien2.png" type="Texture" id=4]
+[ext_resource path="res://art/meek_art/alien/alien3.png" type="Texture" id=5]
+[ext_resource path="res://art/meek_art/alien/alien4.png" type="Texture" id=6]
+[ext_resource path="res://art/meek_art/alien/alien5.png" type="Texture" id=7]
+[ext_resource path="res://assests/particles_destroy.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 12.2241
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -26,6 +27,7 @@ radius = 12.131
 collision_layer = 4
 collision_mask = 49
 script = ExtResource( 1 )
+bullet_enemy = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2.46494 )
@@ -40,21 +42,32 @@ playing = true
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 25 )
-collision_mask = 9
+collision_mask = 16
 
-[node name="destroy" parent="." instance=ExtResource( 7 )]
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+[node name="destroy" parent="." instance=ExtResource( 8 )]
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -1.90735e-06, 1.13237 )
+scale = Vector2( 1, 1.11324 )
 process_parent = true
 physics_process_parent = true
 
 [node name="Area2D" type="Area2D" parent="."]
+editor/display_folded = true
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, 2.46494 )
 shape = SubResource( 3 )
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[node name="timers" type="Node2D" parent="."]
+
+[node name="timer_gone" type="Timer" parent="timers"]
+wait_time = 0.5
+
+[node name="timer_fire" type="Timer" parent="timers"]
+wait_time = 0.5
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="timers/timer_gone" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="timers/timer_fire" to="." method="_on_timer_fire_timeout"]
