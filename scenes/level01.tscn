@@ -276,6 +276,7 @@ shape = SubResource( 3 )
 stream = ExtResource( 15 )
 autoplay = true
 [connection signal="update_health" from="Player" to="." method="_on_Player_update_health"]
+[connection signal="update_lives" from="Player" to="." method="_on_Player_update_lives"]
 [connection signal="update_pongo" from="Player" to="." method="_on_Player_update_pongo"]
 [connection signal="update_score" from="Player" to="." method="_on_Player_update_score"]
 [connection signal="body_entered" from="fallen" to="." method="_on_fallen_body_entered"]

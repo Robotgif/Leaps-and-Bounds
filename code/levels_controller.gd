@@ -10,7 +10,6 @@ func _ready():
 	player = get_node("Player")
 	player.set_spawn(player.global_position)
 	global.player = player
-	
 	player.set_lives(global.lives)
 	player.set_health(global.health)
 	player.set_score(global.score)
@@ -66,3 +65,7 @@ func _on_next_level_next_level():
 
 func _on_AudioStreamPlayer2D_finished():
 	$AudioStreamPlayer2D.play()
+
+func _on_Player_update_lives(lives):
+	global.lives = lives
+	$HUID.create_lives(lives)

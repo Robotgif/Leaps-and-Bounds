@@ -5,7 +5,7 @@
 [ext_resource path="res://art/meek_art/progress_bar/progress-bar_02.png" type="Texture" id=3]
 [ext_resource path="res://art/meek_art/progress_bar/progress-bar_03.png" type="Texture" id=4]
 [ext_resource path="res://art/meek_art/progress_bar/progress-bar_04.png" type="Texture" id=5]
-[ext_resource path="res://art/meek_art/player/idle/player_idle1.png" type="Texture" id=6]
+[ext_resource path="res://assests/live_icon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://art/aux_art/bar_under.png" type="Texture" id=7]
 [ext_resource path="res://art/aux_art/bar_progress.png" type="Texture" id=8]
 [ext_resource path="res://art/fonts/Pacifico-Regular.ttf" type="DynamicFontData" id=9]
@@ -31,27 +31,13 @@ animations = [ {
 [node name="HUID" type="CanvasLayer"]
 script = ExtResource( 1 )
 texturas = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
-
-[node name="lives" type="Node2D" parent="."]
-editor/display_folded = true
-
-[node name="live3" type="Sprite" parent="lives"]
-position = Vector2( 340.998, 3.55201 )
-texture = ExtResource( 6 )
-
-[node name="live2" type="Sprite" parent="lives"]
-position = Vector2( 319.537, 3.65691 )
-texture = ExtResource( 6 )
-
-[node name="live1" type="Sprite" parent="lives"]
-position = Vector2( 297.064, 4.19191 )
-texture = ExtResource( 6 )
+icon_live = ExtResource( 6 )
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
-margin_left = 353.813
-margin_top = 6.33416
-margin_right = 443.813
-margin_bottom = 21.3342
+margin_left = 354.111
+margin_top = 10.2049
+margin_right = 444.111
+margin_bottom = 25.2049
 value = 100.0
 rounded = true
 texture_under = ExtResource( 7 )
@@ -66,7 +52,7 @@ custom_fonts/font = SubResource( 1 )
 text = "0"
 
 [node name="pongo_stick" type="Node2D" parent="."]
-editor/display_folded = true
+visible = false
 
 [node name="backgroun" type="Sprite" parent="pongo_stick"]
 position = Vector2( 251.644, 18.7857 )
@@ -74,10 +60,10 @@ scale = Vector2( 0.33562, 0.335619 )
 texture = ExtResource( 10 )
 
 [node name="max_pongo" type="Label" parent="pongo_stick"]
-margin_left = 240.079
-margin_top = -4.3845
-margin_right = 281.079
-margin_bottom = 32.6155
+margin_left = 234.767
+margin_top = -4.82721
+margin_right = 275.767
+margin_bottom = 32.1728
 custom_fonts/font = SubResource( 1 )
 text = "0"
 
@@ -87,6 +73,7 @@ scale = Vector2( 0.609464, 0.609464 )
 texture = ExtResource( 11 )
 
 [node name="helper" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( -1.52124, 0 )
 
 [node name="text_controls" type="TextureRect" parent="helper"]
@@ -130,3 +117,18 @@ position = Vector2( 414.74, 158.632 )
 frames = SubResource( 2 )
 frame = 1
 playing = true
+
+[node name="content_lives" type="Control" parent="."]
+margin_left = 280.0
+margin_top = 5.0
+margin_right = 351.0
+margin_bottom = 55.0
+
+[node name="grid" type="GridContainer" parent="content_lives"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -7.44366
+margin_bottom = -7.44366
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3

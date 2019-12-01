@@ -3,6 +3,7 @@ extends KinematicBody2D
 signal update_health
 signal update_score
 signal update_pongo
+signal update_lives
 
 export (int) var run_speed = 100
 export (int) var gravty = 1500
@@ -77,6 +78,7 @@ func set_health(health):
 
 func set_lives(lv):
 	lives = lv
+	emit_signal("update_lives", lives)
 
 func set_spawn(pos: Vector2):
 	_pos_spawn = pos
@@ -123,17 +125,18 @@ func _get_input():
 	var up = Input.is_action_pressed("up")
 	var shots = Input.is_action_pressed("shots")
 	var jump = Input.is_action_pressed("jump")
-	#var jump_release = Input.is_action_just_released("jump")
+	var jump_release = Input.is_action_just_released("jump")
 	var down = Input.is_action_pressed("down")
-	var pongo = Input.is_action_pressed("pongo")
+	#var pongo = Input.is_action_pressed("pongo")
 	var sound_pongo = false
 	
 	if _touch_bounce:
 		_touch_bounce = false
 		_velocity.y = _jump_speed_moment
 		
-	#if jump_release and pongo_stick:
-	#	pongo_stick = false
+	if jump_release and pongo_stick:
+		_jump_speed_moment = jump_speed_super
+		pongo_stick = true
 	
 	if is_on_floor():
 		_touch_floor = true
@@ -144,6 +147,9 @@ func _get_input():
 		timer_on_air.start()
 		_touch_floor = false
 	
+	if jump_release:
+		pongo_stick=true
+	
 	if is_on_floor() and not jump and not down: #exit pongo stick
 		release_action_active = false
 		pongo_stick = false
@@ -153,27 +159,30 @@ func _get_input():
 		_velocity.y = -250
 		if get_slide_count() > 0:
 			get_slide_collision(0).collider.set_collision_mask_bit(1, false)
-	elif not is_on_floor() and jump and pongo and can_pongo: #change jump_release
+	elif not is_on_floor() and jump and jump_release:
 		_jump_speed_moment = jump_speed_super
 		pongo_stick = true
 	elif is_on_floor() and jump:
 		snap = false
 		_touch_bounce = false
 		_velocity.y = _jump_speed_moment
+		print(_jump_speed_moment)
 		if pongo_stick:
-			can_pongo = false
+			#can_pongo = false
 			sound_pongo = true
-			timer_can_pongo.start()
-			_max_pong_sctick -= 1
-			_jump_speed_moment = jump_speed
-			pongo_stick = false
-			if _max_pong_sctick >= 0:
-				emit_signal("update_pongo", _max_pong_sctick)
-			else:
-				die()
+			_velocity.y = jump_speed_super
 			var _dust = dust.instance()
 			_dust.global_position = global_position
 			root_node.add_child(_dust)
+			#timer_can_pongo.start()
+			#_max_pong_sctick -= 1
+			#_jump_speed_moment = jump_speed
+			#pongo_stick = false
+			#if _max_pong_sctick >= 0:
+			#emit_signal("update_pongo", _max_pong_sctick)
+			#else:
+			#die()
+			
 		else:
 			_jump_speed_moment = jump_speed
 			_velocity.y = _jump_speed_moment
