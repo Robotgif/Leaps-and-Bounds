@@ -31,6 +31,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ 85.0, 361.0 ]
 }
+max_pongo_stick = 10
 
 [node name="HUID" parent="." instance=ExtResource( 2 )]
 
@@ -54,6 +55,7 @@ jump_speed = -450
 jump_speed_super = -700
 
 [node name="platforms" type="Node2D" parent="."]
+editor/display_folded = true
 z_index = -3
 
 [node name="bounce" parent="platforms" instance=ExtResource( 6 )]
@@ -283,3 +285,4 @@ autoplay = true
 [connection signal="body_exited" from="helpers/info_controls" to="helpers" method="_on__body_exited"]
 [connection signal="body_entered" from="helpers/info_pongo" to="helpers" method="_on_info_pongo_body_entered"]
 [connection signal="body_exited" from="helpers/info_pongo" to="helpers" method="_on__body_exited"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]

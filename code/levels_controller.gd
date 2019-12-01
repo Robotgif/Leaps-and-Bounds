@@ -50,7 +50,6 @@ func _on_fallen_body_entered(body):
 	if body.name == "Player":
 		player.die()
 
-
 func _on_Timer_timeout():
 	if player.lives > 0:
 		update_huid()
@@ -59,11 +58,11 @@ func _on_Timer_timeout():
 	else:
 		assert(get_tree().change_scene("res://scenes/game_over_game.tscn") == OK)
 
-
-
 func _on_Player_update_pongo(value):
 	$HUID.set_max_pongo(value)
 
-
 func _on_next_level_next_level():
 	global.add_level()
+
+func _on_AudioStreamPlayer2D_finished():
+	$AudioStreamPlayer2D.play()

@@ -23,3 +23,5 @@ func _on_start_pressed():
 	$Tween.start()
 
 
+func _on_AudioStreamPlayer2D_finished():
+	$AudioStreamPlayer2D.play()

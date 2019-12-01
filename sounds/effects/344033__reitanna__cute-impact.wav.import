@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/344033__reitanna__cute-impact.wav-38bf6da78aa5fefc71f75dfef6a031da.sample"
+
+[deps]
+
+source_file="res://sounds/effects/344033__reitanna__cute-impact.wav"
+dest_files=[ "res://.import/344033__reitanna__cute-impact.wav-38bf6da78aa5fefc71f75dfef6a031da.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

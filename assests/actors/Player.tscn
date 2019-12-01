@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://code/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/meek_art/player/idle/idle_shoot_right.png" type="Texture" id=2]
@@ -27,8 +27,9 @@
 [ext_resource path="res://assests/particles_destroy.tscn" type="PackedScene" id=25]
 [ext_resource path="res://sounds/effects/Jump20.wav" type="AudioStream" id=26]
 [ext_resource path="res://sounds/effects/Jump9.wav" type="AudioStream" id=27]
-[ext_resource path="res://sounds/effects/Laser_Shoot5.wav" type="AudioStream" id=28]
-[ext_resource path="res://sounds/effects/Explosion18.wav" type="AudioStream" id=29]
+[ext_resource path="res://sounds/effects/344033__reitanna__cute-impact.wav" type="AudioStream" id=28]
+[ext_resource path="res://sounds/effects/Laser_Shoot5.wav" type="AudioStream" id=29]
+[ext_resource path="res://sounds/effects/Explosion18.wav" type="AudioStream" id=30]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -86,7 +87,6 @@ editor/display_folded = true
 position = Vector2( -13, -15 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 4
 playing = true
 offset = Vector2( 13, 15 )
 
@@ -133,14 +133,14 @@ stream = ExtResource( 26 )
 [node name="pongo_sound" type="AudioStreamPlayer2D" parent="sounds"]
 stream = ExtResource( 27 )
 
-[node name="pongo_sound2" type="AudioStreamPlayer2D" parent="sounds"]
-stream = ExtResource( 27 )
-
-[node name="laser_sound" type="AudioStreamPlayer2D" parent="sounds"]
+[node name="hurt_sound" type="AudioStreamPlayer2D" parent="sounds"]
 stream = ExtResource( 28 )
 
-[node name="explosion_sound" type="AudioStreamPlayer2D" parent="sounds"]
+[node name="laser_sound" type="AudioStreamPlayer2D" parent="sounds"]
 stream = ExtResource( 29 )
+
+[node name="explosion_sound" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 30 )
 [connection signal="timeout" from="timers/timer_on_air" to="." method="_on_timer_on_air_timeout"]
 [connection signal="timeout" from="timers/timer_can_fire" to="." method="_on_timer_can_fire_timeout"]
 [connection signal="timeout" from="timers/timer_can_pongo" to="." method="_on_timer_can_pongo_timeout"]

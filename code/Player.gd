@@ -23,6 +23,7 @@ onready var jump_sound = $sounds/jump_sound
 onready var laser_sound = $sounds/laser_sound
 onready var explosion_sound = $sounds/explosion_sound
 onready var pongo_sound = $sounds/pongo_sound
+onready var hurt_sound = $sounds/hurt_sound
 onready var timer_on_air = $timers/timer_on_air
 onready var timer_can_fire = $timers/timer_can_fire
 onready var timer_can_pongo = $timers/timer_can_pongo
@@ -50,6 +51,7 @@ var _touch_bounce = false
 var _max_pong_sctick = 0
 var can_pongo = true
 var snap = true
+var take_hurt = false
 
 
 func set_max_pongo(value):
@@ -81,6 +83,7 @@ func set_spawn(pos: Vector2):
 	
 func take_damage(damage):
 	_touch_bounce = true
+	take_hurt = true
 	_jump_speed_moment = jump_speed
 	if _health_moment - damage <= 0:
 		die()
@@ -216,6 +219,9 @@ func _make_sounds(down, shots, jump, can_fire, pongo_stick):
 			pongo_sound.play()
 	if shots and not can_fire:
 		laser_sound.play()
+	if take_hurt:
+		hurt_sound.play()
+		take_hurt = false
 		
 func _animations(left, right, up, shots, can_fire,  jump, pongo_stick):
 	

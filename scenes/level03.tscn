@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://code/levels_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUID.tscn" type="PackedScene" id=2]
@@ -11,8 +11,7 @@
 [ext_resource path="res://assests/platforms/moving.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assests/next_level.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/level03.tscn" type="PackedScene" id=12]
-[ext_resource path="res://sounds/5 Action Chiptunes By Juhani Junkala/Juhani Junkala [Retro Game Music Pack] Level 2.wav" type="AudioStream" id=13]
+[ext_resource path="res://sounds/5 Action Chiptunes By Juhani Junkala/Juhani Junkala [Retro Game Music Pack] Level 3.wav" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 246, 20 )
@@ -35,7 +34,15 @@ position = Vector2( 157.029, -282.04 )
 behaviour = 2
 
 [node name="alien4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 313.999, -75.0951 )
+position = Vector2( 296.387, -62.106 )
+behaviour = 3
+
+[node name="alien9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 132.372, -79.0579 )
+behaviour = 3
+
+[node name="alien8" parent="." instance=ExtResource( 4 )]
+position = Vector2( 213.389, -16.314 )
 behaviour = 3
 
 [node name="alien2" parent="." instance=ExtResource( 4 )]
@@ -49,8 +56,18 @@ behaviour = 3
 [node name="alien7" parent="." instance=ExtResource( 4 )]
 position = Vector2( 245.434, -805.881 )
 
+[node name="alien10" parent="." instance=ExtResource( 4 )]
+position = Vector2( 169.041, -907.372 )
+
+[node name="alien12" parent="." instance=ExtResource( 4 )]
+position = Vector2( 224.168, -1225.49 )
+
 [node name="alien3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 130.603, -1006.97 )
+behaviour = 2
+
+[node name="alien11" parent="." instance=ExtResource( 4 )]
+position = Vector2( 130.603, -1311.53 )
 behaviour = 2
 
 [node name="alien6" parent="." instance=ExtResource( 4 )]
@@ -69,7 +86,7 @@ z_index = -3
 position = Vector2( 253.855, 126.749 )
 
 [node name="short12" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 300.51, 84 )
+position = Vector2( 129.671, 74.3132 )
 
 [node name="short5" parent="platforms" instance=ExtResource( 6 )]
 position = Vector2( 316.51, -217 )
@@ -78,10 +95,10 @@ position = Vector2( 316.51, -217 )
 position = Vector2( 181.51, -321 )
 
 [node name="long5" parent="platforms" instance=ExtResource( 7 )]
-position = Vector2( 198.468, 100.798 )
+position = Vector2( 212.338, 49.7223 )
 
 [node name="long6" parent="platforms" instance=ExtResource( 7 )]
-position = Vector2( 176.51, 65 )
+position = Vector2( 139.744, 13.7042 )
 
 [node name="long11" parent="platforms" instance=ExtResource( 7 )]
 position = Vector2( 297.51, -151 )
@@ -120,7 +137,7 @@ position = Vector2( 162.51, -255 )
 position = Vector2( 308.431, 28.2202 )
 
 [node name="long34" parent="platforms" instance=ExtResource( 7 )]
-position = Vector2( 308.431, -16.6912 )
+position = Vector2( 212.884, -61.8227 )
 
 [node name="long10" parent="platforms" instance=ExtResource( 7 )]
 position = Vector2( 132.664, -148.813 )
@@ -149,17 +166,23 @@ position = Vector2( 194.51, -812 )
 [node name="long30" parent="platforms" instance=ExtResource( 7 )]
 position = Vector2( 174.51, -880 )
 
+[node name="long39" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( 225.119, -1190.88 )
+
 [node name="long33" parent="platforms" instance=ExtResource( 7 )]
 position = Vector2( 133.368, -1066.04 )
 
 [node name="long35" parent="platforms" instance=ExtResource( 7 )]
-position = Vector2( 183.342, -1263.52 )
+position = Vector2( 198.705, -1370.16 )
 
 [node name="long36" parent="platforms" instance=ExtResource( 7 )]
 position = Vector2( 287.255, -1307.33 )
 
 [node name="long37" parent="platforms" instance=ExtResource( 7 )]
 position = Vector2( 303.987, -1369.64 )
+
+[node name="long38" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( 303.767, -1502.83 )
 
 [node name="long23" parent="platforms" instance=ExtResource( 7 )]
 position = Vector2( 167.967, -674.992 )
@@ -168,7 +191,7 @@ position = Vector2( 167.967, -674.992 )
 position = Vector2( 120.51, -304.769 )
 
 [node name="long8" parent="platforms" instance=ExtResource( 7 )]
-position = Vector2( 133.088, -18.2869 )
+position = Vector2( 133.088, -48.6681 )
 
 [node name="long9" parent="platforms" instance=ExtResource( 7 )]
 position = Vector2( 256.51, -253 )
@@ -180,19 +203,34 @@ position = Vector2( 121.51, -357 )
 position = Vector2( 129.51, 125 )
 
 [node name="long2" parent="platforms" instance=ExtResource( 7 )]
-position = Vector2( 325.51, 155 )
+position = Vector2( 312.521, 72.002 )
 
 [node name="breakable" parent="platforms" instance=ExtResource( 8 )]
 position = Vector2( 279.51, 190 )
 
 [node name="short3" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 245.486, -927.552 )
+position = Vector2( 245.706, -927.552 )
+
+[node name="short17" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 199.616, -1522.21 )
+
+[node name="short4" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 206.739, -977.747 )
+
+[node name="short18" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 206.739, -1282.31 )
 
 [node name="short11" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 176.257, -955.425 )
+position = Vector2( 294.259, -965.112 )
+
+[node name="short14" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 294.259, -1269.67 )
 
 [node name="short7" parent="platforms" instance=ExtResource( 6 )]
 position = Vector2( 304.51, -909 )
+
+[node name="short16" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 304.51, -1213.56 )
 
 [node name="short9" parent="platforms" instance=ExtResource( 6 )]
 position = Vector2( 277.544, -1061.21 )
@@ -200,11 +238,14 @@ position = Vector2( 277.544, -1061.21 )
 [node name="short8" parent="platforms" instance=ExtResource( 6 )]
 position = Vector2( 135.748, -971.327 )
 
+[node name="short15" parent="platforms" instance=ExtResource( 6 )]
+position = Vector2( 135.748, -1275.89 )
+
 [node name="short10" parent="platforms" instance=ExtResource( 6 )]
 position = Vector2( 343.51, -1083 )
 
 [node name="short13" parent="platforms" instance=ExtResource( 6 )]
-position = Vector2( 133.483, -1338.38 )
+position = Vector2( 131.676, -1567.93 )
 
 [node name="breakable5" parent="platforms" instance=ExtResource( 8 )]
 position = Vector2( 234.599, -401.839 )
@@ -229,9 +270,20 @@ movement = 2
 position = Vector2( 210.35, -1101.29 )
 movement = 1
 
-[node name="moving5" parent="platforms" instance=ExtResource( 9 )]
-position = Vector2( 246.676, -1213.79 )
+[node name="moving6" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 130.434, -1119.34 )
 movement = 1
+
+[node name="moving5" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 316.947, -1576.19 )
+movement = 1
+
+[node name="moving7" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 286.304, -1416.33 )
+movement = 2
+
+[node name="moving8" parent="platforms" instance=ExtResource( 9 )]
+position = Vector2( 134.398, -1457.94 )
 
 [node name="fallen" type="Area2D" parent="."]
 editor/display_folded = true
@@ -249,11 +301,6 @@ shape = SubResource( 1 )
 [node name="bounds" parent="." instance=ExtResource( 10 )]
 position = Vector2( 224, 128 )
 
-[node name="next_level" parent="." instance=ExtResource( 11 )]
-position = Vector2( 144.081, -1424.09 )
-next_level_path = ExtResource( 12 )
-node_transition = NodePath("../transition")
-
 [node name="init_level" parent="." instance=ExtResource( 11 )]
 position = Vector2( 172.623, 204.785 )
 type = 1
@@ -262,7 +309,7 @@ type = 1
 one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 13 )
+stream = ExtResource( 12 )
 autoplay = true
 [connection signal="update_health" from="Player" to="." method="_on_Player_update_health"]
 [connection signal="update_pongo" from="Player" to="." method="_on_Player_update_pongo"]
