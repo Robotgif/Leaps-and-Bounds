@@ -257,7 +257,7 @@ func _physics_process(delta):
 		if y < (last_position_y - 50):
 			last_position_y = y
 			take_score(score_jump)
-		elif y > (last_position_y + 200) and _score > 0:
+		elif y > (last_position_y + 100) and _score > 0:
 			take_score(-score_jump)
 			last_position_y = y
 		

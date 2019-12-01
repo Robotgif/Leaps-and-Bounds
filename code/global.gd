@@ -6,6 +6,7 @@ var player = null setget set_player
 var score = 0
 var lives = 3
 var health = 0
+var level = 1
 
 func set_player(p):
 	if player == null:
@@ -14,3 +15,5 @@ func set_player(p):
 		health = p.get_health()
 	player = p
 	
+func add_level():
+	level += 1

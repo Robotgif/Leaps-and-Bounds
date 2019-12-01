@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://code/levels_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUID.tscn" type="PackedScene" id=2]
@@ -12,8 +12,7 @@
 [ext_resource path="res://assests/platforms/breakable.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assests/next_level.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/level02.tscn" type="PackedScene" id=13]
-[ext_resource path="res://code/helpers.gd" type="Script" id=14]
+[ext_resource path="res://code/helpers.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 246, 20 )
@@ -48,7 +47,7 @@ position = Vector2( 140.51, -992 )
 behaviour = 2
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 180.51, -1238 )
+position = Vector2( 233.637, 180 )
 jump_speed = -450
 jump_speed_super = -700
 
@@ -242,15 +241,12 @@ position = Vector2( 224, 128 )
 
 [node name="next_level" parent="." instance=ExtResource( 12 )]
 position = Vector2( 157.51, -1233 )
-next_level_path = ExtResource( 13 )
-node_transition = NodePath("../transition")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="helpers" type="Node2D" parent="."]
-editor/display_folded = true
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 huid_node = NodePath("../HUID")
 
 [node name="info_controls" type="Area2D" parent="helpers"]
@@ -272,7 +268,6 @@ shape = SubResource( 3 )
 [connection signal="update_pongo" from="Player" to="." method="_on_Player_update_pongo"]
 [connection signal="update_score" from="Player" to="." method="_on_Player_update_score"]
 [connection signal="body_entered" from="fallen" to="." method="_on_fallen_body_entered"]
-[connection signal="next_level" from="next_level" to="." method="_on_next_level_next_level"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="helpers/info_controls" to="helpers" method="_on_info_controls_body_entered"]
 [connection signal="body_exited" from="helpers/info_controls" to="helpers" method="_on__body_exited"]

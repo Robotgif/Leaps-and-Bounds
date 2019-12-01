@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/port.png-fe0025f615b3662d025c0c1d433fc7d4.stex"
+path="res://.import/ATMK_End_scene_colour.jpg-3bf56040e87920a475dd56388602291b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/aux_art/port.png"
-dest_files=[ "res://.import/port.png-fe0025f615b3662d025c0c1d433fc7d4.stex" ]
+source_file="res://art/huper123/ATMK_End_scene_colour.jpg"
+dest_files=[ "res://.import/ATMK_End_scene_colour.jpg-3bf56040e87920a475dd56388602291b.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/port.png-fe0025f615b3662d025c0c1d433fc7d4.stex"
+path="res://.import/ATMK_main_menu_colour_v2.jpg-97b1424af7c108d5b4afa12fd211d2ce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/aux_art/port.png"
-dest_files=[ "res://.import/port.png-fe0025f615b3662d025c0c1d433fc7d4.stex" ]
+source_file="res://art/huper123/ATMK_main_menu_colour_v2.jpg"
+dest_files=[ "res://.import/ATMK_main_menu_colour_v2.jpg-97b1424af7c108d5b4afa12fd211d2ce.stex" ]
 
 [params]
 

@@ -57,9 +57,13 @@ func _on_Timer_timeout():
 		global.health = player.health
 		assert(get_tree().reload_current_scene() == OK)
 	else:
-		assert(get_tree().reload_current_scene() == OK)
+		assert(get_tree().change_scene("res://scenes/game_over_game.tscn") == OK)
 
 
 
 func _on_Player_update_pongo(value):
 	$HUID.set_max_pongo(value)
+
+
+func _on_next_level_next_level():
+	global.add_level()

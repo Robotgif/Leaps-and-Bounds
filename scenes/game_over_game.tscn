@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://code/game_over_game.gd" type="Script" id=1]
+[ext_resource path="res://art/huper123/ATMK_End_scene_colour.jpg" type="Texture" id=2]
+[ext_resource path="res://art/fonts/Pacifico-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 35
+outline_size = 4
+outline_color = Color( 0.247059, 0.678431, 0.121569, 1 )
+font_data = ExtResource( 3 )
+
+[node name="end_game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/TextureRect"]
+margin_left = 28.0
+margin_top = 71.0
+margin_right = 196.0
+margin_bottom = 133.0
+rect_rotation = -19.9603
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Game Over"
+
+[node name="Tween" type="Tween" parent="."]
