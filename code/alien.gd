@@ -4,7 +4,8 @@ onready var raycast = $RayCast2D
 onready var timer = $timers/timer_gone
 onready var timer_fire = $timers/timer_fire
 onready var root_node = get_tree().get_root()
-
+onready var die_sound = $sounds/die_sound
+onready var shots_sound = $sounds/shots_sound
 
 enum BEHAVRIOUR {STATIC, ACTIVO, BAD, VERY_BAD}
 
@@ -53,6 +54,7 @@ func fire():
 		_bullet.global_position = global_position
 		root_node.add_child(_bullet)
 		timer_fire.wait_time = fire_ration
+		shots_sound.play()
 		timer_fire.start()
 		
 func _physics_process(delta):
@@ -68,6 +70,7 @@ func _physics_process(delta):
 
 func die():
 	if not is_die:
+		die_sound.play()
 		is_die = true
 		$AnimatedSprite.visible = false
 		$destroy.emitting = true

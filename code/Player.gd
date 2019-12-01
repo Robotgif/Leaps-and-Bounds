@@ -19,7 +19,10 @@ enum DIR_SHOSTS  {LEFT, RIGHT, UP}
 
 onready var bullet = preload("res://assests/bullet.tscn")
 onready var dust = preload("res://assests/juice_dust.tscn")
-
+onready var jump_sound = $sounds/jump_sound
+onready var laser_sound = $sounds/laser_sound
+onready var explosion_sound = $sounds/explosion_sound
+onready var pongo_sound = $sounds/pongo_sound
 onready var timer_on_air = $timers/timer_on_air
 onready var timer_can_fire = $timers/timer_can_fire
 onready var timer_can_pongo = $timers/timer_can_pongo
@@ -47,6 +50,7 @@ var _touch_bounce = false
 var _max_pong_sctick = 0
 var can_pongo = true
 var snap = true
+
 
 func set_max_pongo(value):
 	_max_pong_sctick = value
@@ -119,6 +123,7 @@ func _get_input():
 	#var jump_release = Input.is_action_just_released("jump")
 	var down = Input.is_action_pressed("down")
 	var pongo = Input.is_action_pressed("pongo")
+	var sound_pongo = false
 	
 	if _touch_bounce:
 		_touch_bounce = false
@@ -145,7 +150,7 @@ func _get_input():
 		_velocity.y = -250
 		if get_slide_count() > 0:
 			get_slide_collision(0).collider.set_collision_mask_bit(1, false)
-	elif not is_on_floor() and jump and pongo and can_pongo: #re
+	elif not is_on_floor() and jump and pongo and can_pongo: #change jump_release
 		_jump_speed_moment = jump_speed_super
 		pongo_stick = true
 	elif is_on_floor() and jump:
@@ -154,6 +159,7 @@ func _get_input():
 		_velocity.y = _jump_speed_moment
 		if pongo_stick:
 			can_pongo = false
+			sound_pongo = true
 			timer_can_pongo.start()
 			_max_pong_sctick -= 1
 			_jump_speed_moment = jump_speed
@@ -198,9 +204,19 @@ func _get_input():
 		timer_can_fire.start()
 		
 	
-	_animations(left, right, up, shots, can_fire,  jump, pongo_stick)
+	_animations(left, right, up, shots,  can_fire,  jump, pongo_stick)
+	_make_sounds(down,  shots, jump, can_fire, sound_pongo)
 
-
+var one_time = true
+func _make_sounds(down, shots, jump, can_fire, pongo_stick):
+	if (jump or down) and is_on_floor():
+		if not pongo_stick:
+			jump_sound.play()
+		else:
+			pongo_sound.play()
+	if shots and not can_fire:
+		laser_sound.play()
+		
 func _animations(left, right, up, shots, can_fire,  jump, pongo_stick):
 	
 	if is_on_floor():
@@ -274,6 +290,7 @@ func desintegrated():
 
 func die():
 	if _health_moment > 0:
+		explosion_sound.play()
 		_health_moment = 0
 		lives -= 1
 		$sp_player.visible = false

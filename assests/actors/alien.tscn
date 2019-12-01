@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://code/alien.gd" type="Script" id=1]
 [ext_resource path="res://assests/acid_enemy.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://art/meek_art/alien/alien4.png" type="Texture" id=6]
 [ext_resource path="res://art/meek_art/alien/alien5.png" type="Texture" id=7]
 [ext_resource path="res://assests/particles_destroy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sounds/effects/Explosion10.wav" type="AudioStream" id=9]
+[ext_resource path="res://sounds/effects/Laser_Shoot4.wav" type="AudioStream" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 12.2241
@@ -62,12 +64,21 @@ position = Vector2( 0, 2.46494 )
 shape = SubResource( 3 )
 
 [node name="timers" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="timer_gone" type="Timer" parent="timers"]
 wait_time = 0.5
 
 [node name="timer_fire" type="Timer" parent="timers"]
 wait_time = 0.5
+
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="die_sound" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 9 )
+
+[node name="shots_sound" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 10 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="timers/timer_gone" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="timers/timer_fire" to="." method="_on_timer_fire_timeout"]

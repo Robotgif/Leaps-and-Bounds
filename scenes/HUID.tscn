@@ -87,24 +87,27 @@ scale = Vector2( 0.609464, 0.609464 )
 texture = ExtResource( 11 )
 
 [node name="helper" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( -1.52124, 0 )
 
 [node name="text_controls" type="TextureRect" parent="helper"]
 visible = false
-margin_left = 111.783
-margin_top = 177.238
-margin_right = 329.783
-margin_bottom = 244.238
+margin_left = 116.11
+margin_top = 166.0
+margin_right = 351.11
+margin_bottom = 244.0
 texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
 
 [node name="pongo_stick" type="TextureRect" parent="helper"]
 visible = false
-margin_left = 111.783
-margin_top = 177.238
-margin_right = 329.783
-margin_bottom = 244.238
+margin_left = 126.442
+margin_top = 170.201
+margin_right = 344.442
+margin_bottom = 237.201
 texture = ExtResource( 13 )
+expand = true
+stretch_mode = 6
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 380.829
@@ -125,4 +128,5 @@ position = Vector2( 32.1375, 46.2296 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 414.74, 158.632 )
 frames = SubResource( 2 )
+frame = 1
 playing = true

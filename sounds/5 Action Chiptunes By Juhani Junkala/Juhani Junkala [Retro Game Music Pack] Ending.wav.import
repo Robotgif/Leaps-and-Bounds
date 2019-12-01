@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Juhani Junkala [Retro Game Music Pack] Ending.wav-6fa9097ef5fc6dd48f71ec463456cedf.sample"
+
+[deps]
+
+source_file="res://sounds/5 Action Chiptunes By Juhani Junkala/Juhani Junkala [Retro Game Music Pack] Ending.wav"
+dest_files=[ "res://.import/Juhani Junkala [Retro Game Music Pack] Ending.wav-6fa9097ef5fc6dd48f71ec463456cedf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,56 +1,60 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://code/Player.gd" type="Script" id=1]
-[ext_resource path="res://art/meek_art/player/idle/player_idle1.png" type="Texture" id=2]
-[ext_resource path="res://art/meek_art/player/idle/player_idle2.png" type="Texture" id=3]
-[ext_resource path="res://art/meek_art/player/idle/player_idle3.png" type="Texture" id=4]
-[ext_resource path="res://art/meek_art/player/idle/player_idle4.png" type="Texture" id=5]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_gunright.png" type="Texture" id=6]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_gunup.png" type="Texture" id=7]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_nogun.png" type="Texture" id=8]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_gunright.png" type="Texture" id=9]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_gunup.png" type="Texture" id=10]
-[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_nogun.png" type="Texture" id=11]
-[ext_resource path="res://art/meek_art/player/jump/jump.png" type="Texture" id=12]
-[ext_resource path="res://art/meek_art/player/jump/jump_gun_right.png" type="Texture" id=13]
-[ext_resource path="res://art/meek_art/player/jump/jump_gun_up.png" type="Texture" id=14]
-[ext_resource path="res://art/meek_art/player/idle/idle_shoot_right.png" type="Texture" id=15]
-[ext_resource path="res://art/meek_art/player/idle/idle_shoot_up.png" type="Texture" id=16]
-[ext_resource path="res://art/meek_art/player/run/run1.png" type="Texture" id=17]
-[ext_resource path="res://art/meek_art/player/run/run2.png" type="Texture" id=18]
-[ext_resource path="res://art/meek_art/player/run/run3.png" type="Texture" id=19]
-[ext_resource path="res://art/meek_art/player/run/run4.png" type="Texture" id=20]
-[ext_resource path="res://art/meek_art/player/run/run5.png" type="Texture" id=21]
-[ext_resource path="res://art/meek_art/player/run/run6.png" type="Texture" id=22]
-[ext_resource path="res://art/meek_art/player/run/run7.png" type="Texture" id=23]
-[ext_resource path="res://art/meek_art/player/run/run8.png" type="Texture" id=24]
+[ext_resource path="res://art/meek_art/player/idle/idle_shoot_right.png" type="Texture" id=2]
+[ext_resource path="res://art/meek_art/player/idle/idle_shoot_up.png" type="Texture" id=3]
+[ext_resource path="res://art/meek_art/player/idle/player_idle1.png" type="Texture" id=4]
+[ext_resource path="res://art/meek_art/player/idle/player_idle2.png" type="Texture" id=5]
+[ext_resource path="res://art/meek_art/player/idle/player_idle3.png" type="Texture" id=6]
+[ext_resource path="res://art/meek_art/player/idle/player_idle4.png" type="Texture" id=7]
+[ext_resource path="res://art/meek_art/player/run/run1.png" type="Texture" id=8]
+[ext_resource path="res://art/meek_art/player/run/run2.png" type="Texture" id=9]
+[ext_resource path="res://art/meek_art/player/run/run3.png" type="Texture" id=10]
+[ext_resource path="res://art/meek_art/player/run/run4.png" type="Texture" id=11]
+[ext_resource path="res://art/meek_art/player/run/run5.png" type="Texture" id=12]
+[ext_resource path="res://art/meek_art/player/run/run6.png" type="Texture" id=13]
+[ext_resource path="res://art/meek_art/player/run/run7.png" type="Texture" id=14]
+[ext_resource path="res://art/meek_art/player/run/run8.png" type="Texture" id=15]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_gunright.png" type="Texture" id=16]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_gunup.png" type="Texture" id=17]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_down_nogun.png" type="Texture" id=18]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_gunright.png" type="Texture" id=19]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_gunup.png" type="Texture" id=20]
+[ext_resource path="res://art/meek_art/player/pogo-stick/pogo_up_nogun.png" type="Texture" id=21]
+[ext_resource path="res://art/meek_art/player/jump/jump.png" type="Texture" id=22]
+[ext_resource path="res://art/meek_art/player/jump/jump_gun_right.png" type="Texture" id=23]
+[ext_resource path="res://art/meek_art/player/jump/jump_gun_up.png" type="Texture" id=24]
 [ext_resource path="res://assests/particles_destroy.tscn" type="PackedScene" id=25]
+[ext_resource path="res://sounds/effects/Jump20.wav" type="AudioStream" id=26]
+[ext_resource path="res://sounds/effects/Jump9.wav" type="AudioStream" id=27]
+[ext_resource path="res://sounds/effects/Laser_Shoot5.wav" type="AudioStream" id=28]
+[ext_resource path="res://sounds/effects/Explosion18.wav" type="AudioStream" id=29]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": false,
-"name": "pongo_stick",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
-"loop": false,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": false,
 "name": "gun",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": false,
+"name": "pongo_stick",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": false,
+"name": "jump",
 "speed": 5.0
 } ]
 
@@ -82,7 +86,7 @@ editor/display_folded = true
 position = Vector2( -13, -15 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 6
+frame = 4
 playing = true
 offset = Vector2( 13, 15 )
 
@@ -107,6 +111,7 @@ shape = SubResource( 2 )
 [node name="particle_destroy" parent="." instance=ExtResource( 25 )]
 
 [node name="timers" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="timer_on_air" type="Timer" parent="timers"]
 wait_time = 1.3
@@ -119,6 +124,23 @@ one_shot = true
 [node name="timer_can_pongo" type="Timer" parent="timers"]
 wait_time = 5.0
 one_shot = true
+
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 26 )
+
+[node name="pongo_sound" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 27 )
+
+[node name="pongo_sound2" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 27 )
+
+[node name="laser_sound" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 28 )
+
+[node name="explosion_sound" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 29 )
 [connection signal="timeout" from="timers/timer_on_air" to="." method="_on_timer_on_air_timeout"]
 [connection signal="timeout" from="timers/timer_can_fire" to="." method="_on_timer_can_fire_timeout"]
 [connection signal="timeout" from="timers/timer_can_pongo" to="." method="_on_timer_can_pongo_timeout"]

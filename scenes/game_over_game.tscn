@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://code/game_over_game.gd" type="Script" id=1]
 [ext_resource path="res://art/huper123/ATMK_End_scene_colour.jpg" type="Texture" id=2]
 [ext_resource path="res://art/fonts/Pacifico-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://sounds/5 Action Chiptunes By Juhani Junkala/Juhani Junkala [Retro Game Music Pack] Ending.wav" type="AudioStream" id=4]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
@@ -33,3 +35,8 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Game Over"
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+attenuation = 4.28709
