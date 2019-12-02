@@ -87,7 +87,7 @@ editor/display_folded = true
 position = Vector2( -13, -15 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 1
+frame = 3
 playing = true
 offset = Vector2( 13, 15 )
 
@@ -127,6 +127,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="sounds" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="jump_sound" type="AudioStreamPlayer2D" parent="sounds"]
 stream = ExtResource( 26 )

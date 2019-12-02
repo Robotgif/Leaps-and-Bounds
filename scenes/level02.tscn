@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://code/levels_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUID.tscn" type="PackedScene" id=2]
@@ -9,11 +9,12 @@
 [ext_resource path="res://assests/platforms/long.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assests/platforms/breakable.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assests/platforms/moving.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assests/next_level.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/level03.tscn" type="PackedScene" id=12]
-[ext_resource path="res://sounds/5 Action Chiptunes By Juhani Junkala/Juhani Junkala [Retro Game Music Pack] Level 2.wav" type="AudioStream" id=13]
-[ext_resource path="res://assests/lives.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assests/platforms/bounce.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assests/bounds.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assests/next_level.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/level03.tscn" type="PackedScene" id=13]
+[ext_resource path="res://sounds/5 Action Chiptunes By Juhani Junkala/Juhani Junkala [Retro Game Music Pack] Level 2.wav" type="AudioStream" id=14]
+[ext_resource path="res://assests/lives.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 246, 20 )
@@ -35,9 +36,17 @@ scroll_base_offset = Vector2( 224, 128 )
 position = Vector2( 157.029, -282.04 )
 behaviour = 2
 
+[node name="alien9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 224.966, -222.037 )
+behaviour = 2
+
 [node name="alien4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 313.999, -75.0951 )
 behaviour = 3
+
+[node name="alien8" parent="." instance=ExtResource( 4 )]
+position = Vector2( 130.024, -81.5417 )
+behaviour = 1
 
 [node name="alien2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 296.73, -403 )
@@ -59,7 +68,7 @@ position = Vector2( 130.603, -1188.6 )
 behaviour = 2
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 169.792, 180.44 )
+position = Vector2( 201.484, 176.663 )
 jump_speed = -450
 jump_speed_super = -700
 
@@ -234,6 +243,9 @@ movement = 1
 position = Vector2( 246.676, -1213.79 )
 movement = 1
 
+[node name="bounce" parent="platforms" instance=ExtResource( 10 )]
+position = Vector2( 221.06, -43.4319 )
+
 [node name="fallen" type="Area2D" parent="."]
 editor/display_folded = true
 position = Vector2( 229.764, 290 )
@@ -247,15 +259,15 @@ shape = SubResource( 1 )
 
 [node name="transition" type="Tween" parent="."]
 
-[node name="bounds" parent="." instance=ExtResource( 10 )]
+[node name="bounds" parent="." instance=ExtResource( 11 )]
 position = Vector2( 224, 128 )
 
-[node name="next_level" parent="." instance=ExtResource( 11 )]
+[node name="next_level" parent="." instance=ExtResource( 12 )]
 position = Vector2( 144.081, -1424.09 )
-next_level_path = ExtResource( 12 )
+next_level_path = ExtResource( 13 )
 node_transition = NodePath("../transition")
 
-[node name="init_level" parent="." instance=ExtResource( 11 )]
+[node name="init_level" parent="." instance=ExtResource( 12 )]
 position = Vector2( 172.623, 204.785 )
 type = 1
 
@@ -263,13 +275,13 @@ type = 1
 one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 13 )
+stream = ExtResource( 14 )
 autoplay = true
 
-[node name="life" parent="." instance=ExtResource( 14 )]
+[node name="life" parent="." instance=ExtResource( 15 )]
 position = Vector2( 128.305, 108.513 )
 [connection signal="update_health" from="Player" to="." method="_on_Player_update_health"]
-[connection signal="update_pongo" from="Player" to="." method="_on_Player_update_pongo"]
+[connection signal="update_lives" from="Player" to="." method="_on_Player_update_lives"]
 [connection signal="update_score" from="Player" to="." method="_on_Player_update_score"]
 [connection signal="body_entered" from="fallen" to="." method="_on_fallen_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -13,8 +13,9 @@ var target = Vector2()
 
 
 func _ready():
-	target = Vector2(global.player.global_position.x, global.player.global_position.y)
-	dir = (target - global_position).normalized()
+	if str(global.player) != "[Deleted Object]":
+		target = Vector2(global.player.global_position.x, global.player.global_position.y)
+		dir = (target - global_position).normalized()
 	timer_gone.wait_time = lifetime
 	timer_gone.start()
 	
